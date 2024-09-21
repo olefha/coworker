@@ -1,14 +1,18 @@
-// src/App.tsx
+// App.tsx
 
 import React from "react";
-import InputForm from "./InputForm";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ChatPage from "./pages/ChatPage";
+// Import other pages as needed
 
 const App: React.FC = () => {
   return (
-    <div>
-      <h1>My TypeScript Project</h1>
-      <InputForm />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<ChatPage />} />
+        {/* Define other routes */}
+      </Routes>
+    </Router>
   );
 };
 

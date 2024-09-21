@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "ES6",                          
-    "module": "commonjs",                     
-    "rootDir": "./src",                       
-    "outDir": "./dist",                       
-    "strict": true,                           
-    "esModuleInterop": true,                  
-    "skipLibCheck": true,                     
-    "forceConsistentCasingInFileNames": true  
+    "target": "ES6",
+    "module": "commonjs",
+    "rootDir": ".",       // Updated to current directory
+    "outDir": "./dist",   // Output compiled files to dist
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   }
 }
