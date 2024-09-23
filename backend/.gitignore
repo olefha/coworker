@@ -13,3 +13,5 @@ logs
 
 # TypeScript cache
 *.tsbuildinfo
+
+#All_CSV_data

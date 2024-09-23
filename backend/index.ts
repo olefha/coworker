@@ -4,7 +4,6 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import portfinder from 'portfinder';
-
 import chatRoutes from './routes/chatRoutes';
 
 dotenv.config();

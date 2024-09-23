@@ -1,0 +1,301 @@
+record_id,deviation_date,description,severity,action_taken,resolved_date,batch_number
+1,2024-05-04 03:24:51,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-05 03:24:51,B20241119-001
+2,2024-02-06 15:39:43,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-09 15:39:43,B20240704-002
+3,2024-07-07 23:12:17,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-09 23:12:17,B20240811-003
+4,2024-10-04 15:10:09,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-07 15:10:09,B20240726-004
+5,2024-02-14 10:42:01,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-16 10:42:01,B20240512-005
+6,2024-12-10 14:08:34,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-12 14:08:34,B20240715-006
+7,2024-04-05 17:16:12,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-06 17:16:12,B20240518-007
+8,2024-04-07 01:43:40,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-08 01:43:40,B20240901-008
+9,2024-06-21 12:02:21,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-22 12:02:21,B20240718-009
+10,2024-12-21 08:32:20,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-24 08:32:20,B20240309-010
+11,2024-02-11 20:03:38,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-13 20:03:38,B20240205-011
+12,2024-08-12 17:58:08,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-15 17:58:08,B20241012-012
+13,2024-04-23 03:08:08,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-24 03:08:08,B20240124-013
+14,2024-06-15 04:05:36,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-18 04:05:36,B20241017-014
+15,2024-02-18 20:33:45,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-19 20:33:45,B20240215-015
+16,2024-01-26 04:34:21,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-27 04:34:21,B20240628-016
+17,2024-10-05 03:25:09,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-07 03:25:09,B20241010-017
+18,2024-02-06 20:21:19,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-09 20:21:19,B20241206-018
+19,2024-03-13 05:42:20,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-15 05:42:20,B20240305-019
+20,2024-03-27 15:59:39,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-28 15:59:39,B20240330-020
+21,2024-07-01 05:16:07,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-04 05:16:07,B20240303-021
+22,2024-07-12 09:34:30,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-13 09:34:30,B20240626-022
+23,2024-09-10 14:51:00,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-12 14:51:00,B20240322-023
+24,2024-11-19 08:09:07,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-20 08:09:07,B20241112-024
+25,2024-05-09 14:02:08,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-11 14:02:08,B20240909-025
+26,2024-02-11 08:53:18,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-13 08:53:18,B20240525-026
+27,2024-05-14 03:34:22,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-17 03:34:22,B20240904-027
+28,2024-03-27 20:00:30,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-28 20:00:30,B20241106-028
+29,2024-05-22 11:25:27,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-24 11:25:27,B20240918-029
+30,2024-04-27 11:55:14,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-30 11:55:14,B20241122-030
+31,2024-04-05 23:03:35,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-07 23:03:35,B20240903-031
+32,2024-10-23 17:02:27,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-26 17:02:27,B20240530-032
+33,2024-04-02 08:32:46,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-04 08:32:46,B20240506-033
+34,2024-07-01 03:21:09,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-04 03:21:09,B20240602-034
+35,2024-07-22 17:58:07,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-23 17:58:07,B20240926-035
+36,2024-08-28 05:11:05,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-29 05:11:05,B20241003-036
+37,2024-12-27 23:50:29,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-29 23:50:29,B20240228-037
+38,2024-08-13 02:52:47,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-15 02:52:47,B20240126-038
+39,2024-06-16 12:55:39,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-19 12:55:39,B20241214-039
+40,2024-08-03 23:51:39,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-05 23:51:39,B20241021-040
+41,2024-11-26 08:09:45,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-27 08:09:45,B20240118-041
+42,2024-08-14 01:57:13,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-15 01:57:13,B20240829-042
+43,2024-10-14 18:42:27,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-17 18:42:27,B20241020-043
+44,2024-04-01 05:09:35,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-02 05:09:35,B20240527-044
+45,2024-08-15 16:48:06,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-17 16:48:06,B20240211-045
+46,2024-12-18 20:59:52,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-21 20:59:52,B20241205-046
+47,2024-02-22 21:40:52,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-24 21:40:52,B20241204-047
+48,2024-07-28 04:05:20,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-29 04:05:20,B20240605-048
+49,2024-06-06 03:40:24,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-07 03:40:24,B20241021-049
+50,2024-06-15 18:53:41,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-18 18:53:41,B20240823-050
+51,2024-07-05 00:48:34,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-07 00:48:34,B20240406-051
+52,2024-12-03 10:28:32,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-06 10:28:32,B20240604-052
+53,2024-06-14 17:51:20,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-15 17:51:20,B20240127-053
+54,2024-01-31 05:04:29,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-01 05:04:29,B20241130-054
+55,2024-05-09 11:25:00,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-11 11:25:00,B20240124-055
+56,2024-07-25 14:56:55,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-28 14:56:55,B20240406-056
+57,2024-05-01 01:10:57,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-03 01:10:57,B20240327-057
+58,2024-07-10 01:39:20,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-11 01:39:20,B20240706-058
+59,2024-10-01 01:39:17,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-03 01:39:17,B20240902-059
+60,2024-07-07 17:48:30,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-09 17:48:30,B20240216-060
+61,2024-03-03 21:47:44,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-04 21:47:44,B20240820-061
+62,2024-09-13 15:09:45,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-14 15:09:45,B20240723-062
+63,2024-10-03 06:23:54,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-04 06:23:54,B20241016-063
+64,2024-11-15 09:57:22,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-18 09:57:22,B20241008-064
+65,2024-09-14 07:59:55,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-17 07:59:55,B20240205-065
+66,2024-06-04 08:09:43,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-06 08:09:43,B20240502-066
+67,2024-01-14 02:17:56,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-16 02:17:56,B20241222-067
+68,2024-08-12 05:39:58,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-15 05:39:58,B20240309-068
+69,2024-10-20 18:05:08,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-22 18:05:08,B20240409-069
+70,2024-04-12 23:19:14,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-14 23:19:14,B20240525-070
+71,2024-02-02 09:53:49,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-03 09:53:49,B20240703-071
+72,2024-04-30 10:30:47,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-02 10:30:47,B20241024-072
+73,2024-03-09 16:22:20,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-10 16:22:20,B20240204-073
+74,2024-03-23 11:19:45,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-26 11:19:45,B20241022-074
+75,2024-01-13 02:48:54,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-16 02:48:54,B20240118-075
+76,2024-10-25 12:32:42,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-27 12:32:42,B20240327-076
+77,2024-04-01 21:43:29,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-04 21:43:29,B20241229-077
+78,2024-03-28 13:56:57,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-29 13:56:57,B20240316-078
+79,2024-05-03 17:16:25,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-05 17:16:25,B20240414-079
+80,2024-03-27 18:47:09,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-30 18:47:09,B20240521-080
+81,2024-07-08 17:07:46,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-10 17:07:46,B20240902-081
+82,2024-10-18 02:18:05,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-20 02:18:05,B20240406-082
+83,2024-02-06 05:23:15,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-07 05:23:15,B20240210-083
+84,2024-09-11 09:01:26,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-13 09:01:26,B20241230-084
+85,2024-01-22 16:44:07,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-25 16:44:07,B20240125-085
+86,2024-10-19 04:47:28,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-22 04:47:28,B20240706-086
+87,2024-10-03 01:35:24,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-05 01:35:24,B20240603-087
+88,2024-12-13 15:33:06,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-16 15:33:06,B20240405-088
+89,2024-07-21 07:39:25,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-22 07:39:25,B20241106-089
+90,2024-09-10 08:10:49,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-13 08:10:49,B20240916-090
+91,2024-02-07 08:22:25,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-10 08:22:25,B20241101-091
+92,2024-03-06 17:27:47,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-07 17:27:47,B20241104-092
+93,2024-08-16 21:00:01,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-17 21:00:01,B20240203-093
+94,2024-05-25 14:07:15,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-28 14:07:15,B20241008-094
+95,2024-06-17 22:36:56,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-20 22:36:56,B20241215-095
+96,2024-01-15 02:51:15,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-16 02:51:15,B20240310-096
+97,2024-05-11 17:57:58,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-12 17:57:58,B20240809-097
+98,2024-01-12 23:21:16,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-15 23:21:16,B20240110-098
+99,2024-03-14 01:16:07,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-15 01:16:07,B20241013-099
+100,2024-11-24 20:41:21,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-27 20:41:21,B20241213-100
+101,2024-08-26 08:57:16,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-29 08:57:16,B20240612-101
+102,2024-02-24 22:07:55,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-27 22:07:55,B20240809-102
+103,2024-08-14 13:45:48,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-17 13:45:48,B20240212-103
+104,2024-09-12 17:15:10,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-13 17:15:10,B20240318-104
+105,2024-05-31 09:42:16,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-02 09:42:16,B20240529-105
+106,2024-06-19 09:07:56,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-21 09:07:56,B20241012-106
+107,2024-11-26 11:09:22,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-28 11:09:22,B20241209-107
+108,2024-09-18 07:19:32,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-19 07:19:32,B20241205-108
+109,2024-07-19 03:19:22,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-22 03:19:22,B20240814-109
+110,2024-12-25 11:28:18,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-28 11:28:18,B20240127-110
+111,2024-11-08 16:19:00,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-09 16:19:00,B20241220-111
+112,2024-03-30 01:14:33,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-31 01:14:33,B20241228-112
+113,2024-04-24 16:50:17,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-26 16:50:17,B20240524-113
+114,2024-11-20 17:48:37,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-21 17:48:37,B20240820-114
+115,2024-11-24 03:38:17,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-26 03:38:17,B20240817-115
+116,2024-03-20 14:48:53,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-23 14:48:53,B20240811-116
+117,2024-10-03 07:16:01,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-06 07:16:01,B20241018-117
+118,2024-05-04 09:41:31,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-07 09:41:31,B20240423-118
+119,2024-06-28 06:26:32,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-29 06:26:32,B20241210-119
+120,2024-09-17 10:05:25,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-18 10:05:25,B20240630-120
+121,2024-04-25 08:08:01,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-28 08:08:01,B20241129-121
+122,2024-04-23 01:49:06,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-24 01:49:06,B20241016-122
+123,2024-05-22 02:58:27,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-24 02:58:27,B20240620-123
+124,2024-07-23 05:52:19,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-26 05:52:19,B20241005-124
+125,2024-12-10 15:59:00,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-12 15:59:00,B20240330-125
+126,2024-07-14 04:40:27,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-15 04:40:27,B20240403-126
+127,2024-04-30 08:25:51,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-03 08:25:51,B20240516-127
+128,2024-01-18 01:11:25,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-21 01:11:25,B20240621-128
+129,2024-03-21 14:08:20,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-22 14:08:20,B20240810-129
+130,2024-06-22 16:47:56,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-25 16:47:56,B20241227-130
+131,2024-03-28 14:49:54,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-31 14:49:54,B20241028-131
+132,2024-11-25 15:51:31,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-26 15:51:31,B20240820-132
+133,2024-10-07 16:54:35,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-09 16:54:35,B20240927-133
+134,2024-01-15 03:49:16,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-16 03:49:16,B20240514-134
+135,2024-01-27 07:56:07,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-30 07:56:07,B20240225-135
+136,2024-08-10 06:16:28,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-11 06:16:28,B20240922-136
+137,2024-11-14 10:35:24,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-16 10:35:24,B20241215-137
+138,2024-09-25 19:32:04,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-26 19:32:04,B20240808-138
+139,2024-02-24 15:15:45,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-27 15:15:45,B20241112-139
+140,2024-08-20 22:13:53,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-23 22:13:53,B20240714-140
+141,2024-01-14 05:58:45,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-17 05:58:45,B20240908-141
+142,2024-05-11 08:57:55,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-14 08:57:55,B20240106-142
+143,2024-06-26 11:16:30,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-28 11:16:30,B20240217-143
+144,2024-08-01 18:21:13,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-04 18:21:13,B20240414-144
+145,2024-05-23 16:13:13,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-24 16:13:13,B20240420-145
+146,2024-03-20 16:06:30,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-22 16:06:30,B20241016-146
+147,2024-11-30 06:04:47,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-03 06:04:47,B20240216-147
+148,2024-08-13 10:24:36,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-16 10:24:36,B20240906-148
+149,2024-05-09 22:31:51,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-11 22:31:51,B20240929-149
+150,2024-06-23 10:38:38,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-24 10:38:38,B20240210-150
+151,2024-06-10 19:36:24,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-11 19:36:24,B20241121-151
+152,2024-05-13 02:31:44,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-15 02:31:44,B20240615-152
+153,2024-07-08 02:31:52,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-10 02:31:52,B20240824-153
+154,2024-05-07 01:20:35,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-08 01:20:35,B20240312-154
+155,2024-05-19 14:40:22,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-21 14:40:22,B20240809-155
+156,2024-10-04 04:54:15,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-06 04:54:15,B20240812-156
+157,2024-12-05 03:25:17,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-06 03:25:17,B20241116-157
+158,2024-04-08 08:08:27,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-09 08:08:27,B20241214-158
+159,2024-06-08 05:37:56,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-10 05:37:56,B20240507-159
+160,2024-07-29 19:41:09,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-31 19:41:09,B20240613-160
+161,2024-01-08 10:47:58,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-09 10:47:58,B20240615-161
+162,2024-11-23 01:42:20,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-24 01:42:20,B20241006-162
+163,2024-09-12 03:27:54,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-14 03:27:54,B20241125-163
+164,2024-03-14 09:34:44,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-16 09:34:44,B20240125-164
+165,2024-06-14 22:42:17,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-15 22:42:17,B20240221-165
+166,2024-02-06 04:38:09,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-07 04:38:09,B20240724-166
+167,2024-07-20 16:13:46,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-21 16:13:46,B20241105-167
+168,2024-01-03 16:24:58,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-04 16:24:58,B20240525-168
+169,2024-03-03 03:46:27,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-05 03:46:27,B20240527-169
+170,2024-09-06 15:25:24,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-08 15:25:24,B20240427-170
+171,2024-03-28 00:00:35,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-31 00:00:35,B20240822-171
+172,2024-04-01 20:06:08,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-03 20:06:08,B20241117-172
+173,2024-08-02 12:56:13,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-05 12:56:13,B20240705-173
+174,2024-08-04 16:15:10,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-07 16:15:10,B20240603-174
+175,2024-05-05 06:22:59,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-07 06:22:59,B20240902-175
+176,2024-09-17 04:22:21,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-20 04:22:21,B20240909-176
+177,2024-12-18 11:17:29,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-21 11:17:29,B20240421-177
+178,2024-07-21 22:17:37,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-22 22:17:37,B20241013-178
+179,2024-10-04 07:15:10,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-06 07:15:10,B20241016-179
+180,2024-10-15 22:21:30,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-17 22:21:30,B20240614-180
+181,2024-09-02 09:37:26,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-04 09:37:26,B20240818-181
+182,2024-09-23 10:21:24,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-25 10:21:24,B20240924-182
+183,2024-04-04 15:51:34,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-07 15:51:34,B20240505-183
+184,2024-09-07 18:03:13,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-10 18:03:13,B20240928-184
+185,2024-10-25 03:53:12,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-28 03:53:12,B20240420-185
+186,2024-07-19 16:10:54,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-21 16:10:54,B20240728-186
+187,2024-08-07 10:29:10,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-08 10:29:10,B20241224-187
+188,2024-02-19 13:53:58,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-22 13:53:58,B20240422-188
+189,2024-08-19 01:13:08,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-21 01:13:08,B20241221-189
+190,2024-12-19 13:03:51,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-20 13:03:51,B20240410-190
+191,2024-01-11 08:08:54,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-13 08:08:54,B20241101-191
+192,2024-05-26 17:58:36,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-27 17:58:36,B20240815-192
+193,2024-09-06 22:39:11,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-09 22:39:11,B20240929-193
+194,2024-09-07 16:40:02,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-09 16:40:02,B20241218-194
+195,2024-07-21 20:33:12,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-23 20:33:12,B20240622-195
+196,2024-08-07 03:11:56,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-08 03:11:56,B20240524-196
+197,2024-05-30 17:56:23,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-31 17:56:23,B20240102-197
+198,2024-07-01 06:27:14,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-04 06:27:14,B20240714-198
+199,2024-10-30 16:40:27,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-01 16:40:27,B20241023-199
+200,2024-12-17 16:25:21,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-19 16:25:21,B20240512-200
+201,2024-12-23 13:54:16,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-24 13:54:16,B20240326-201
+202,2024-09-02 10:57:55,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-04 10:57:55,B20240921-202
+203,2024-05-20 00:03:12,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-21 00:03:12,B20241110-203
+204,2024-05-17 15:52:02,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-18 15:52:02,B20240730-204
+205,2024-03-21 12:13:43,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-24 12:13:43,B20240210-205
+206,2024-11-05 23:18:30,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-08 23:18:30,B20240106-206
+207,2024-04-05 18:22:22,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-06 18:22:22,B20240831-207
+208,2024-01-22 22:02:21,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-24 22:02:21,B20240930-208
+209,2024-03-12 17:10:31,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-14 17:10:31,B20240829-209
+210,2024-03-28 14:16:42,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-29 14:16:42,B20240626-210
+211,2024-10-25 20:50:28,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-27 20:50:28,B20240118-211
+212,2024-04-13 18:54:33,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-15 18:54:33,B20240601-212
+213,2024-11-26 03:07:05,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-29 03:07:05,B20241126-213
+214,2024-09-26 21:48:22,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-27 21:48:22,B20240205-214
+215,2024-01-01 19:40:03,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-02 19:40:03,B20240920-215
+216,2024-08-27 05:39:41,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-29 05:39:41,B20240101-216
+217,2024-04-16 02:53:19,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-18 02:53:19,B20241026-217
+218,2024-07-05 12:01:08,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-06 12:01:08,B20241201-218
+219,2024-08-23 22:43:42,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-26 22:43:42,B20240110-219
+220,2024-04-14 13:01:24,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-16 13:01:24,B20240603-220
+221,2024-01-10 00:20:24,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-13 00:20:24,B20240114-221
+222,2024-01-24 21:31:20,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-27 21:31:20,B20240810-222
+223,2024-11-27 20:47:55,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-29 20:47:55,B20240725-223
+224,2024-08-06 02:54:22,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-08 02:54:22,B20241207-224
+225,2024-12-30 17:52:46,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2025-01-02 17:52:46,B20240211-225
+226,2024-02-29 13:36:57,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-01 13:36:57,B20240228-226
+227,2024-12-25 14:53:18,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-28 14:53:18,B20240516-227
+228,2024-08-28 06:30:48,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-29 06:30:48,B20241021-228
+229,2024-07-20 15:01:32,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-22 15:01:32,B20240409-229
+230,2024-09-06 09:23:15,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-09 09:23:15,B20240310-230
+231,2024-11-04 04:08:38,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-06 04:08:38,B20240519-231
+232,2024-07-20 15:23:29,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-21 15:23:29,B20241030-232
+233,2024-02-16 06:28:27,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-18 06:28:27,B20240126-233
+234,2024-11-03 20:20:32,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-06 20:20:32,B20240902-234
+235,2024-11-26 10:01:13,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-29 10:01:13,B20240611-235
+236,2024-12-25 02:39:19,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-28 02:39:19,B20240607-236
+237,2024-03-01 23:20:27,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-04 23:20:27,B20240901-237
+238,2024-08-03 10:41:28,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-04 10:41:28,B20240418-238
+239,2024-01-31 08:29:53,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-03 08:29:53,B20240324-239
+240,2024-03-26 21:29:11,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-27 21:29:11,B20241008-240
+241,2024-08-21 05:19:34,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-22 05:19:34,B20240212-241
+242,2024-02-18 09:35:06,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-19 09:35:06,B20240407-242
+243,2024-11-25 00:54:37,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-28 00:54:37,B20240605-243
+244,2024-04-20 13:13:19,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-22 13:13:19,B20240813-244
+245,2024-03-24 15:35:04,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-27 15:35:04,B20240521-245
+246,2024-09-03 11:50:10,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-05 11:50:10,B20240802-246
+247,2024-10-09 09:29:29,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-10 09:29:29,B20240223-247
+248,2024-07-26 07:31:24,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-27 07:31:24,B20240421-248
+249,2024-06-27 16:13:04,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-30 16:13:04,B20240912-249
+250,2024-09-08 03:22:04,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-10 03:22:04,B20241013-250
+251,2024-12-06 08:07:59,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-08 08:07:59,B20241202-251
+252,2024-09-29 22:35:30,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-01 22:35:30,B20240623-252
+253,2024-09-16 18:25:43,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-19 18:25:43,B20240910-253
+254,2024-03-11 21:19:52,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-12 21:19:52,B20240213-254
+255,2024-10-16 10:25:10,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-18 10:25:10,B20240614-255
+256,2024-08-03 03:28:14,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-04 03:28:14,B20241104-256
+257,2024-12-11 22:59:34,pH level slightly off,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-13 22:59:34,B20240821-257
+258,2024-04-26 05:24:22,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-27 05:24:22,B20240214-258
+259,2024-07-02 17:02:46,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-05 17:02:46,B20241106-259
+260,2024-10-31 11:05:26,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-03 11:05:26,B20240805-260
+261,2024-09-24 07:53:27,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-27 07:53:27,B20241024-261
+262,2024-07-24 07:11:23,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-27 07:11:23,B20240525-262
+263,2024-02-26 15:57:31,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-29 15:57:31,B20240102-263
+264,2024-12-12 07:03:11,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-14 07:03:11,B20240310-264
+265,2024-01-27 17:59:09,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-30 17:59:09,B20240401-265
+266,2024-02-04 01:15:14,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-05 01:15:14,B20240927-266
+267,2024-11-19 19:07:53,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-21 19:07:53,B20240118-267
+268,2024-11-12 12:59:37,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-15 12:59:37,B20240730-268
+269,2024-03-26 05:47:34,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-29 05:47:34,B20241025-269
+270,2024-08-26 21:06:07,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-28 21:06:07,B20240224-270
+271,2024-01-31 22:21:43,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-02-01 22:21:43,B20240805-271
+272,2024-10-01 12:20:37,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-02 12:20:37,B20240108-272
+273,2024-04-25 13:12:04,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-28 13:12:04,B20240905-273
+274,2024-03-04 18:59:11,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-07 18:59:11,B20240310-274
+275,2024-09-08 13:22:17,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-11 13:22:17,B20240325-275
+276,2024-07-29 08:14:26,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-30 08:14:26,B20240522-276
+277,2024-06-18 16:49:32,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-06-21 16:49:32,B20240520-277
+278,2024-07-23 09:22:27,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-24 09:22:27,B20240502-278
+279,2024-10-01 19:27:47,Higher than normal bacteria count,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-02 19:27:47,B20241007-279
+280,2024-12-09 08:13:45,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-12-11 08:13:45,B20241028-280
+281,2024-03-06 00:35:45,Fat content below standard,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-03-08 00:35:45,B20240526-281
+282,2024-07-17 06:11:56,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-20 06:11:56,B20240917-282
+283,2024-05-26 10:44:16,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-27 10:44:16,B20240418-283
+284,2024-08-11 03:53:34,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-12 03:53:34,B20240118-284
+285,2024-08-07 09:30:54,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-10 09:30:54,B20240121-285
+286,2024-08-01 08:45:19,pH level slightly off,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-08-04 08:45:19,B20240705-286
+287,2024-05-12 08:55:39,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-15 08:55:39,B20240307-287
+288,2024-06-29 22:35:38,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-01 22:35:38,B20240904-288
+289,2024-04-26 08:48:05,pH level slightly off,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-27 08:48:05,B20240326-289
+290,2024-09-14 08:02:50,Higher than normal bacteria count,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-16 08:02:50,B20240723-290
+291,2024-10-12 11:58:35,Packaging machine malfunction,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-14 11:58:35,B20240212-291
+292,2024-04-08 11:17:42,Fat content below standard,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-09 11:17:42,B20240625-292
+293,2024-04-26 22:58:15,Fat content below standard,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-04-28 22:58:15,B20240610-293
+294,2024-01-01 09:19:53,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-03 09:19:53,B20240523-294
+295,2024-11-14 12:08:08,Packaging machine malfunction,Low,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-11-16 12:08:08,B20240403-295
+296,2024-07-17 19:12:05,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-07-20 19:12:05,B20240929-296
+297,2024-05-07 09:36:48,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-05-10 09:36:48,B20240310-297
+298,2024-10-07 15:38:31,Packaging machine malfunction,Medium,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-10-08 15:38:31,B20240120-298
+299,2024-01-24 17:14:54,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-01-25 17:14:54,B20240921-299
+300,2024-09-10 10:20:30,Higher than normal bacteria count,High,Issue investigated and corrective actions implemented. Follow-up testing conducted.,2024-09-13 10:20:30,B20240303-300
