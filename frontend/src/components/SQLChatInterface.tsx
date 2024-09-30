@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// frontend/src/ChatInterface.tsx
+// frontend/src/components/SQLChatInterface.tsx
 
-import React, { useState, useEffect, useRef } from "react";
-import { sendMessage } from "../services/apiService";
-//import { sendChatMessage } from "../services/apiService";
+import React, { useState, useRef, useEffect } from "react";
+import { sendChatMessage } from "../services/apiService";
 
 interface Message {
   sender: "user" | "ai";
@@ -11,11 +10,12 @@ interface Message {
   timestamp: Date;
 }
 
-const ChatInterface: React.FC = () => {
+const SQLChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
+  const [selectedModel, setSelectedModel] = useState<string>("gpt-4");
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToBottom = () => {
@@ -38,25 +38,28 @@ const ChatInterface: React.FC = () => {
       timestamp: new Date(),
     };
 
-    setMessages((prevMessages) => [...prevMessages, userMessage]);
+    setMessages((prev) => [...prev, userMessage]);
     setInputValue("");
     setIsLoading(true);
     setError("");
 
     try {
-      const aiResponse = await sendMessage(userMessage.content);
-      console.log("AI Response from sendMessage:", aiResponse); // Added for debugging
+      const aiResponse = await sendChatMessage(
+        userMessage.content,
+        selectedModel,
+        "/api/sql-chat"
+      );
+      console.log("AI Response from sendChatMessage:", aiResponse); // Add this line
 
       const aiMessage: Message = {
         sender: "ai",
         content: aiResponse,
         timestamp: new Date(),
       };
-
-      setMessages((prevMessages) => [...prevMessages, aiMessage]);
+      setMessages((prev) => [...prev, aiMessage]);
     } catch (err: any) {
       console.error("Error:", err);
-      setError(err.message || "Failed to get response from AI.");
+      setError(err.message || "Failed to get response from server.");
     } finally {
       setIsLoading(false);
     }
@@ -64,7 +67,7 @@ const ChatInterface: React.FC = () => {
 
   return (
     <div style={styles.container}>
-      <h2>AI Chat</h2>
+      <h2>SQL Chat</h2>
       <div style={styles.chatBox}>
         {messages.map((msg, index) => (
           <div
@@ -82,11 +85,21 @@ const ChatInterface: React.FC = () => {
       </div>
       {error && <div style={styles.error}>{error}</div>}
       <form onSubmit={handleSubmit} style={styles.form}>
+        <select
+          value={selectedModel}
+          onChange={(e) => setSelectedModel(e.target.value)}
+          style={styles.select}
+          disabled={isLoading}
+        >
+          <option value="gpt-4">GPT-4</option>
+          <option value="gpt-3.5-turbo">GPT-3.5</option>
+          {/* Add more model options as needed */}
+        </select>
         <input
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Type your message..."
+          placeholder="Ask a production question..."
           style={styles.input}
           disabled={isLoading}
         />
@@ -144,10 +157,16 @@ const styles: { [key: string]: React.CSSProperties } = {
     color: "#fff",
     cursor: "pointer",
   },
+  select: {
+    padding: "0.5rem",
+    borderRadius: "20px",
+    border: "1px solid #ccc",
+    marginRight: "0.5rem",
+  },
   error: {
     color: "red",
     marginTop: "0.5rem",
   },
 };
 
-export default ChatInterface;
+export default SQLChatInterface;

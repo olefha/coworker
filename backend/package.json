@@ -17,9 +17,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@langchain/community": "^0.3.2",
-    "@langchain/core": "^0.3.3",
-    "@langchain/openai": "^0.3.0",
+    "@langchain/community": "^0.3.3",
+    "@langchain/core": "^0.3.4",
+    "@langchain/openai": "^0.3.2",
     "axios": "^1.7.7",
     "cors": "^2.8.5",
     "csv-parser": "^3.0.0",
@@ -31,7 +31,8 @@
     "neo4j-driver": "^5.24.1",
     "pg": "^8.13.0",
     "pg-promise": "^11.9.1",
-    "portfinder": "^1.0.32"
+    "portfinder": "^1.0.32",
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.0",
