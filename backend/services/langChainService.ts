@@ -1,20 +1,46 @@
-// import { Neo4jGraph } from '@langchain/community/graphs/neo4j_graph';
-// import { BaseRetriever } from '@langchain/core/retrievers';
-// import { getLatestProcessData } from './digitalTwinService';
-// import { Document } from 'langchain/document';
+// import { Neo4jGraph } from "@langchain/community/graphs/neo4j_graph";
+// import { BaseRetriever } from "@langchain/core/retrievers";
+// import { getLatestProcessData } from "./digitalTwinService";
+// import { Document } from "langchain/document";
 // import { MultiQueryRetriever } from "langchain/retrievers/multi_query";
-// import { ChatOpenAI } from '@langchain/openai';
-// import { ChatPromptTemplate} from '@langchain/core/prompts'
-// //import { RetrievalQAChain } from 'langchain/chains';
+// import { ChatOpenAI } from "@langchain/openai";
+// import { ChatPromptTemplate } from "@langchain/core/prompts";
+// import { createRetrievalChain } from "langchain/chains/retrieval";
 
-// // Retriever:
-// // - KnowledgeGraphRetriever
-// // - DigitalTwinRetriever
-// // - CombinedRetriever
-// // - MultiQueryRetriever
-// // - Feed the retriever to the QAChain
-// // - Use this in the chatController
-// // - Wrap to async initialize function
+// import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
+// import { ChatPromptTemplate } from "@langchain/core/prompts";
+// import { createRetrievalChain } from "langchain/chains/retrieval";
+// import { MemoryVectorStore } from "langchain/vectorstores/memory";
+
+// const documents = [...your documents here];
+// const embeddings = ...your embeddings model;
+// const llm = ...your LLM model;
+
+// const vectorstore = await MemoryVectorStore.fromDocuments(
+//   documents,
+//   embeddings
+// );
+// const prompt = ChatPromptTemplate.fromTemplate(`Answer the user's question: {input} based on the following context {context}`);
+
+// const combineDocsChain = await createStuffDocumentsChain({
+//   llm,
+//   prompt,
+// });
+// const retriever = vectorstore.asRetriever();
+
+// const retrievalChain = await createRetrievalChain({
+//   combineDocsChain,
+//   retriever,
+// });
+
+// Retriever:
+// - KnowledgeGraphRetriever
+// - DigitalTwinRetriever
+// - CombinedRetriever
+// - MultiQueryRetriever
+// - Feed the retriever to the QAChain
+// - Use this in the chatController
+// - Wrap to async initialize function
 
 // const graph = Neo4jGraph.initialize({
 //   url: process.env.NEO4J_URI!,
@@ -25,33 +51,35 @@
 // // const knowledgeGraphRetriever = graph();
 
 // class DigitalTwinRetriever extends BaseRetriever {
-// lc_namespace: string[] = ['digitalTwin'];
+//   lc_namespace: string[] = ["digitalTwin"];
 
-// async retrieve(query: string): Promise<Document[]> {
+//   async retrieve(query: string): Promise<Document[]> {
 //     return this.getRelevantDocuments(query);
-// }
+//   }
 //   async getRelevantDocuments(query: string) {
 //     // TODO: maybe fetch all data and filter based on query
 //     // Fetch relevant data based on the query
 //     const data = await getLatestProcessData();
-//     return data.map((item) => new Document({
-//       pageContent: JSON.stringify(item),
-//       metadata: { source: 'digitalTwin' },
-//     }));
+//     return data.map(
+//       (item) =>
+//         new Document({
+//           pageContent: JSON.stringify(item),
+//           metadata: { source: "digitalTwin" },
+//         })
+//     );
 //   }
 // }
 
 // const digitalTwinRetriever = new DigitalTwinRetriever();
 
 // const combinedRetriever = new MultiQueryRetriever({
-//     retriever: digitalTwinRetriever
-//     // retrievers: [knowledgeGraphRetriever, digitalTwinRetriever],
-
+//   retriever: digitalTwinRetriever,
+//   // retrievers: [knowledgeGraphRetriever, digitalTwinRetriever],
 // });
 
 // const llm = new ChatOpenAI({
 //   temperature: 0,
-//   modelName: 'gpt-3.5-turbo', // or 'gpt-4' if available
+//   modelName: "gpt-3.5-turbo", // or 'gpt-4' if available
 //   openAIApiKey: process.env.OPENAI_API_KEY!,
 // });
 

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "es2017",
     "module": "commonjs",
     "rootDir": ".",       // Updated to current directory
     "outDir": "./dist",   // Output compiled files to dist

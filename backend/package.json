@@ -11,7 +11,8 @@
     "load-data": "ts-node scripts/loadDTData.ts",
     "dbserve": "ts-node services/dbService.ts",
     "populate-kg": "ts-node scripts/populateKnowledgeGraph.ts",
-    "load-text-kg": "ts-node scripts/populateKnowledgeGraphText.ts"
+    "load-text-kg": "ts-node scripts/populateKnowledgeGraphText.ts",
+    "get-data": "ts-node services/fullRetrieverService.ts"
   },
   "keywords": [],
   "author": "",

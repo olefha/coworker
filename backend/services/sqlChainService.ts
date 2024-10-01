@@ -1,3 +1,5 @@
+//services/sqlChainService.ts
+
 import { ChatOpenAI } from "@langchain/openai";
 import { createSqlQueryChain } from "langchain/chains/sql_db";
 import { SqlDatabase } from "langchain/sql_db";
