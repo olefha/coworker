@@ -1,10 +1,11 @@
 // routes/chatRoutes.ts
 
-import { Router } from 'express';
-import { handleChat } from '../controllers/chatController';
+import { Router } from "express";
+//import { handleChat } from "../controllers/chatController";
+import { handleChat } from "../controllers/chatController";
 
 const router = Router();
 
-router.post('/chat', handleChat);
+router.post("/", handleChat);
 
 export default router;

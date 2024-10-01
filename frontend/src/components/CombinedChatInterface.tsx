@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// frontend/src/ChatInterface.tsx
+// frontend/src/components/CombinedChatInterface.tsx
 
-import React, { useState, useEffect, useRef } from "react";
-import { sendMessage } from "../services/apiService";
-//import { sendChatMessage } from "../services/apiService";
+import React, { useState, useRef, useEffect } from "react";
+import { askQuestion } from "../services/apiService";
 
 interface Message {
   sender: "user" | "ai";
@@ -11,11 +10,12 @@ interface Message {
   timestamp: Date;
 }
 
-const ChatInterface: React.FC = () => {
+const CombinedChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
+
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToBottom = () => {
@@ -38,25 +38,24 @@ const ChatInterface: React.FC = () => {
       timestamp: new Date(),
     };
 
-    setMessages((prevMessages) => [...prevMessages, userMessage]);
+    setMessages((prev) => [...prev, userMessage]);
     setInputValue("");
     setIsLoading(true);
     setError("");
 
     try {
-      const aiResponse = await sendMessage(userMessage.content);
-      console.log("AI Response from sendMessage:", aiResponse); // Added for debugging
+      const aiResponse = await askQuestion(userMessage.content);
+      console.log("AI Response from askQuestion:", aiResponse); // For debugging
 
       const aiMessage: Message = {
         sender: "ai",
         content: aiResponse,
         timestamp: new Date(),
       };
-
-      setMessages((prevMessages) => [...prevMessages, aiMessage]);
+      setMessages((prev) => [...prev, aiMessage]);
     } catch (err: any) {
       console.error("Error:", err);
-      setError(err.message || "Failed to get response from AI.");
+      setError(err.message || "Failed to get response from server.");
     } finally {
       setIsLoading(false);
     }
@@ -64,7 +63,7 @@ const ChatInterface: React.FC = () => {
 
   return (
     <div style={styles.container}>
-      <h2>AI Chat</h2>
+      <h2>Combined SQL & Graph Chat</h2>
       <div style={styles.chatBox}>
         {messages.map((msg, index) => (
           <div
@@ -86,7 +85,7 @@ const ChatInterface: React.FC = () => {
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Type your message..."
+          placeholder="Ask a production question..."
           style={styles.input}
           disabled={isLoading}
         />
@@ -150,4 +149,4 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 };
 
-export default ChatInterface;
+export default CombinedChatInterface;
