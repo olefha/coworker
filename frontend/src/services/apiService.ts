@@ -57,7 +57,7 @@ export const askQuestion = async (question: string): Promise<string> => {
     const response = await apiClient.post<{ answer: string }>("/ask-question", {
       question,
     });
-    return response.data.answer; // Ensure backend returns { answer: string }
+    return response.data.answer; //  { answer: string }
   } catch (error: any) {
     console.error("Error in askQuestion:", error);
     throw new Error(
