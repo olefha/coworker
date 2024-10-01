@@ -4,6 +4,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import ChatInterface from "./components/ChatInterface";
 import SQLChatInterface from "./components/SQLChatInterface";
+import CombinedChatInterface from "./components/CombinedChatInterface";
 
 function App() {
   return (
@@ -15,10 +16,14 @@ function App() {
         <Link to="/sql-chat" style={styles.link}>
           SQL Chat
         </Link>
+        <Link to="/combined-chat" style={styles.link}>
+          Combined Chat
+        </Link>
       </div>
       <Routes>
         <Route path="/" element={<ChatInterface />} />
         <Route path="/sql-chat" element={<SQLChatInterface />} />
+        <Route path="/combined-chat" element={<CombinedChatInterface />} />
       </Routes>
     </Router>
   );

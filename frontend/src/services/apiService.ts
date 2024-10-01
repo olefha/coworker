@@ -46,3 +46,22 @@ export const sendChatMessage = async (
     );
   }
 };
+
+/**
+ * Sends a user question to the '/ask-question' endpoint.
+ * @param question - The user's question.
+ * @returns The AI's combined answer as a string.
+ */
+export const askQuestion = async (question: string): Promise<string> => {
+  try {
+    const response = await apiClient.post<{ answer: string }>("/ask-question", {
+      question,
+    });
+    return response.data.answer; // Ensure backend returns { answer: string }
+  } catch (error: any) {
+    console.error("Error in askQuestion:", error);
+    throw new Error(
+      error.response?.data?.error || "Failed to communicate with the server."
+    );
+  }
+};

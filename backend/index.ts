@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import portfinder from "portfinder";
 import chatRoutes from "./routes/chatRoutes";
 import sqlChatRoutes from "./routes/sqlChatRoutes";
+import questionRoutes from "./routes/questionRoutes";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use(express.json());
 // Routes
 app.use("/api/chat", chatRoutes);
 app.use("/api/sql-chat", sqlChatRoutes);
+app.use("/api", questionRoutes);
 
 // Start the server
 const DEFAULT_PORT = parseInt(process.env.PORT || "5001", 10);
@@ -30,6 +32,7 @@ portfinder.basePort = DEFAULT_PORT;
 app.listen(DEFAULT_PORT, () => {
   console.log(`Server is running on http://localhost:${DEFAULT_PORT}`);
 });
+
 // portfinder
 //   .getPortPromise()
 //   .then((port) => {
