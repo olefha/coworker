@@ -16,5 +16,8 @@
     "@typescript-eslint/parser": "^8.6.0",
     "concurrently": "^9.0.1",
     "eslint": "^9.11.0"
+  },
+  "dependencies": {
+    "@langchain/ollama": "^0.1.0"
   }
 }
