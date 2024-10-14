@@ -5,10 +5,12 @@ import "reflect-metadata"; // Required by TypeORM
 import "dotenv/config";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { Neo4jGraph } from "@langchain/community/graphs/neo4j_graph";
-import { GraphCypherQAChain } from "@langchain/community/chains/graph_qa/cypher";
+import { GraphCypherQAChain } from "langchain/chains/graph_qa/cypher";
 import { SqlDatabaseChain } from "langchain/chains/sql_db";
 import { ChatOpenAI } from "@langchain/openai";
 import { AIMessage } from "@langchain/core/messages";
+// import { ChatOllama, Ollama } from "@langchain/ollama";
+// import { createSQLChain } from "./sqlChainService";
 // Initialize LLMs
 const openAIApiKey = process.env.OPENAI_API_KEY;
 
@@ -17,6 +19,10 @@ const llm = new ChatOpenAI({
   temperature: 0,
   modelName: "gpt-3.5-turbo",
 });
+
+// const ollama = new ChatOllama({
+//   model: "llama3.1",
+// });
 
 // Define your custom prompt for SQL
 const sqlPrompt = new PromptTemplate({
@@ -48,7 +54,6 @@ const combinePrompt = new PromptTemplate({
     "sql_result",
     "graph_result",
     "total_production",
-    "full_capacity",
   ],
   template: `As an expert data analyst, use the data provided to answer the user's question.
 
@@ -147,19 +152,6 @@ export const handleUserQuestion = async (
     console.log("Graph Query Result:", graphResult);
     console.log("Graph Query Result:", graphResult.result);
 
-    // Function to extract full capacity
-    // function extractFullCapacity(result: any): number | null {
-    //   if (result && result.length > 0) {
-    //     const record = result[0];
-    //     if (record.full_capacity) {
-    //       return record.full_capacity;
-    //     }
-    //   }
-    //   return null;
-    // }
-    const fullCapacity = 280000;
-    console.log("Full Capacity:", fullCapacity);
-
     // Combine Results Using Third LLM
     const combinedChain = new ChatOpenAI({
       openAIApiKey: openAIApiKey,
@@ -174,7 +166,6 @@ export const handleUserQuestion = async (
       sql_result: JSON.stringify(executedSqlResult, null, 2),
       graph_result: JSON.stringify(graphResult, null, 2),
       total_production: totalProduction,
-      full_capacity: fullCapacity,
     });
 
     const combinedResponse: AIMessage = await combinedChain.invoke(

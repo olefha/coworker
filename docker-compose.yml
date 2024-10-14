@@ -10,22 +10,22 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
     ports:
-      - "5433:5433"
+      - "5434:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
-  neo4j:
-    image: neo4j:5.4.0
-    container_name: neo4j
-    restart: always
-    environment:
-      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD}
-    ports:
-      - "7474:7474"  # Neo4j Browser
-      - "7687:7687"  # Bolt protocol
-    volumes:
-      - neo4j-data:/data
+  # neo4j:
+  #   image: neo4j:5.4.0
+  #   container_name: neo4j
+  #   restart: always
+  #   environment:
+  #     NEO4J_AUTH: neo4j/${NEO4J_PASSWORD}
+  #   ports:
+  #     - "7474:7474"  # Neo4j Browser
+  #     - "7687:7687"  # Bolt protocol
+  #   volumes:
+  #     - neo4j-data:/data
 
 volumes:
   postgres-data:
-  neo4j-data:
+  # neo4j-data:

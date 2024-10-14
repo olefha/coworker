@@ -1,0 +1,325 @@
+Introduction
+The dairy production process involves multiple interconnected entities, each playing a crucial role in the operations. The key entities are:
+
+Process
+Production Batch
+Quality Data
+Standard Operating Procedure (SOP)
+Shift Process Log
+Non-Conformity Record
+Raw Material Input
+Understanding the relationships between these entities is essential for optimizing production, ensuring product quality, and addressing operational issues.
+
+Entities and Attributes
+1. Process
+process_id: Unique identifier for the process.
+process_name: Name of the process (e.g., "Pasteurization").
+start_time: Timestamp when the process starts.
+end_time: Timestamp when the process ends.
+temperature: Temperature in degrees Celsius.
+pressure: Pressure in kilopascals (kPa).
+flow_rate: Flow rate in liters per hour.
+equipment_used: Equipment involved in the process (e.g., "Tank A").
+2. Production Batch
+production_id: Unique identifier for the production batch.
+batch_number: Batch number in the format "BYYYYMMDD-###" (e.g., "B20230915-001").
+product_name: Name of the product (e.g., "Whole Milk").
+quantity: Quantity produced.
+unit: Unit of measurement (e.g., "Liters").
+production_date: Date when production occurred.
+3. Quality Data
+quality_id: Unique identifier for the quality data.
+batch_number: Associated batch number.
+fat_content: Fat content percentage.
+protein_content: Protein content percentage.
+bacteria_count: Bacteria count per milliliter.
+pH_level: pH level of the product.
+test_date: Date and time when the quality test was performed.
+4. Standard Operating Procedure (SOP)
+sop_id: Unique identifier for the SOP.
+procedure_name: Name of the procedure (e.g., "Pasteurization Process").
+description: Detailed description of the procedure.
+version: Version number of the SOP (e.g., "1.2").
+last_updated: Date when the SOP was last updated.
+spec_limits: Specification limits (e.g., "Temperature: 72-75°C; Fat Content: 3.0-4.0%").
+process_guidelines: Operational guidelines.
+5. Shift Process Log
+log_id: Unique identifier for the shift log.
+shift_date: Date of the shift.
+shift_number: Shift number (1: Morning, 2: Afternoon, 3: Night).
+operator_name: Name of the operator.
+log_entry: Description of shift activities or issues.
+6. Non-Conformity Record
+record_id: Unique identifier for the non-conformity record.
+deviation_date: Date when the deviation occurred.
+description: Description of the issue.
+severity: Severity level ("Low", "Medium", "High").
+action_taken: Actions taken to resolve the issue.
+resolved_date: Date when the issue was resolved.
+7. Raw Material Input
+material_id: Unique identifier for the raw material input.
+arrival_date: Date when the material arrived.
+supplier_name: Name of the supplier.
+material_type: Type of material (e.g., "Raw Milk").
+quantity: Quantity of material received.
+unit: Unit of measurement (e.g., "Liters").
+quality_check: Result of the quality check ("Passed" or "Failed").
+remarks: Additional comments.
+Relationships Between Entities
+1. Process PRODUCES Production Batch
+Relationship: (Process)-[:PRODUCES]->(Production Batch)
+Description: A process results in the creation of a production batch.
+2. Production Batch HAS Quality Data
+Relationship: (Production Batch)-[:HAS_QUALITY_DATA]->(Quality Data)
+Description: A production batch has associated quality data.
+3. Production Batch FOLLOWS SOP
+Relationship: (Production Batch)-[:FOLLOWS]->(SOP)
+Description: A production batch follows a specific SOP.
+4. Shift Process Log PERTAINS TO Process
+Relationship: (Shift Process Log)-[:PERTAINS_TO]->(Process)
+Description: A shift process log pertains to a specific process.
+5. Non-Conformity Record RELATES TO Process or Quality Data
+Relationships:
+(Non-Conformity Record)-[:RELATES_TO]->(Process)
+(Non-Conformity Record)-[:RELATES_TO]->(Quality Data)
+Description: A non-conformity record relates to a process or quality data.
+6. Raw Material Input USED IN Process
+Relationship: (Raw Material Input)-[:USED_IN]->(Process)
+Description: Raw material input is used in a process.
+Golden Run Scenarios
+Golden Run 1: Capacity Utilization and Downtime on September 15, 2023
+Entities and Attributes
+Process
+
+process_id: 1001
+process_name: "Pasteurization"
+start_time: "2023-09-15T08:00:00"
+end_time: "2023-09-15T10:00:00"
+temperature: 60.0
+pressure: 150.0
+flow_rate: 500.0 (Reduced due to malfunction)
+equipment_used: "Tank A"
+Shift Process Log
+
+log_id: 5001
+shift_date: "2023-09-15"
+shift_number: 1
+operator_name: "John Doe"
+log_entry: "Equipment malfunction observed; production halted for 2 hours."
+Non-Conformity Record
+
+record_id: 3001
+deviation_date: "2023-09-15"
+description: "Equipment failure leading to reduced capacity."
+severity: "High"
+action_taken: "Maintenance performed; resumed normal operations."
+resolved_date: "2023-09-16"
+Relationships
+Shift Process Log PERTAINS TO Process
+
+(Shift Process Log 5001)-[:PERTAINS_TO]->(Process 1001)
+Non-Conformity Record RELATES TO Process
+
+(Non-Conformity Record 3001)-[:RELATES_TO]->(Process 1001)
+Golden Run 2: Low Yield Due to Poor-Quality Raw Milk on September 16, 2023
+Entities and Attributes
+Raw Material Input
+
+material_id: 2001
+arrival_date: "2023-09-16"
+supplier_name: "Dairy Farms Inc."
+material_type: "Raw Milk"
+quantity: 8000.0
+unit: "Liters"
+quality_check: "Failed"
+remarks: "Low fat content detected."
+Process
+
+process_id: 1002
+process_name: "Standardization"
+start_time: "2023-09-16T09:00:00"
+end_time: "2023-09-16T11:00:00"
+temperature: 60.0
+pressure: 150.0
+flow_rate: 850.0
+equipment_used: "Tank B"
+Production Batch
+
+production_id: 1002
+batch_number: "B20230916-001"
+product_name: "Whole Milk"
+quantity: 500.0 (Lower than normal)
+unit: "Liters"
+production_date: "2023-09-16"
+Quality Data
+
+quality_id: 4001
+batch_number: "B20230916-001"
+fat_content: 2.0 (Lower than standard)
+protein_content: 2.5
+bacteria_count: 10000
+pH_level: 6.7
+test_date: "2023-09-16T12:00:00"
+Relationships
+Raw Material Input USED IN Process
+
+(Raw Material Input 2001)-[:USED_IN]->(Process 1002)
+Process PRODUCES Production Batch
+
+(Process 1002)-[:PRODUCES]->(Production Batch 1002)
+Production Batch HAS Quality Data
+
+(Production Batch 1002)-[:HAS_QUALITY_DATA]->(Quality Data 4001)
+Golden Run 3: Unstable Process Conditions on September 17, 2023
+Entities and Attributes
+Process
+
+process_id: 1003
+process_name: "Pasteurization"
+start_time: "2023-09-17T09:00:00"
+end_time: "2023-09-17T11:00:00"
+temperature: 70.0 (Higher than SOP limits)
+pressure: 150.0
+flow_rate: 850.0
+equipment_used: "Tank A"
+Production Batch
+
+production_id: 1003
+batch_number: "B20230917-001"
+product_name: "Skim Milk"
+quantity: 5000.0
+unit: "Liters"
+production_date: "2023-09-17"
+Quality Data
+
+quality_id: 4002
+batch_number: "B20230917-001"
+fat_content: 4.5 (Above acceptable range)
+protein_content: 3.2
+bacteria_count: 10000
+pH_level: 6.7
+test_date: "2023-09-17T12:00:00"
+Standard Operating Procedure (SOP)
+
+sop_id: 1
+procedure_name: "Pasteurization Process"
+description: "Procedure for pasteurizing milk."
+version: "1.2"
+last_updated: "2023-08-01"
+spec_limits: "Temperature: 72-75°C; Fat Content: 3.0-4.0%"
+process_guidelines: "Ensure temperature is within specified limits."
+Relationships
+Process PRODUCES Production Batch
+
+(Process 1003)-[:PRODUCES]->(Production Batch 1003)
+Production Batch HAS Quality Data
+
+(Production Batch 1003)-[:HAS_QUALITY_DATA]->(Quality Data 4002)
+Production Batch FOLLOWS SOP
+
+(Production Batch 1003)-[:FOLLOWS]->(SOP 1)
+Golden Run 4: Shift Log Insights and Non-Conformities on September 18, 2023
+Entities and Attributes
+Process
+
+process_id: 1004
+process_name: "Homogenization"
+start_time: "2023-09-18T14:00:00"
+end_time: "2023-09-18T16:00:00"
+temperature: 60.0
+pressure: 150.0
+flow_rate: 850.0
+equipment_used: "Homogenizer 2"
+Shift Process Log
+
+log_id: 5002
+shift_date: "2023-09-18"
+shift_number: 2
+operator_name: "Jane Smith"
+log_entry: "Unusual odor detected during processing; possible contamination."
+Non-Conformity Record
+
+record_id: 3002
+deviation_date: "2023-09-18"
+description: "Potential contamination detected."
+severity: "Medium"
+action_taken: "Investigated source; sanitized equipment."
+resolved_date: "2023-09-19"
+Quality Data
+
+quality_id: 4003
+batch_number: "B20230918-001"
+fat_content: 3.5
+protein_content: 3.2
+bacteria_count: 300000 (Elevated bacteria count)
+pH_level: 6.7
+test_date: "2023-09-18T17:00:00"
+Relationships
+Process PRODUCES Production Batch
+
+(Process 1004)-[:PRODUCES]->(Production Batch 1004)
+Production Batch HAS Quality Data
+
+(Production Batch 1004)-[:HAS_QUALITY_DATA]->(Quality Data 4003)
+Shift Process Log PERTAINS TO Process
+
+(Shift Process Log 5002)-[:PERTAINS_TO]->(Process 1004)
+Non-Conformity Record RELATES TO Process
+
+(Non-Conformity Record 3002)-[:RELATES_TO]->(Process 1004)
+Non-Conformity Record RELATES TO Quality Data
+
+(Non-Conformity Record 3002)-[:RELATES_TO]->(Quality Data 4003)
+Golden Run 5: Historical Pattern Recognition for Quality Variations
+Historical Data on June 15, 2023
+Process
+
+process_id: 9999
+process_name: "Pasteurization"
+start_time: "2023-06-15T14:00:00"
+end_time: "2023-06-15T16:00:00"
+temperature: 70.0 (Deviated temperature)
+pressure: 160.0
+flow_rate: 900.0
+equipment_used: "Tank A"
+Production Batch
+
+production_id: 9999
+batch_number: "B20230615-999"
+product_name: "Whole Milk"
+quantity: 5000.0
+unit: "Liters"
+production_date: "2023-06-15"
+Quality Data
+
+quality_id: 9999
+batch_number: "B20230615-999"
+fat_content: 4.5 (Above acceptable range)
+protein_content: 3.5
+bacteria_count: 100000
+pH_level: 6.8
+test_date: "2023-06-15T15:00:00"
+Non-Conformity Record
+
+record_id: 9999
+deviation_date: "2023-06-15"
+description: "Temperature deviation causing quality issues."
+severity: "High"
+action_taken: "Adjusted temperature controls; retrained staff."
+resolved_date: "2023-06-16"
+Relationships
+Process PRODUCES Production Batch
+
+(Process 9999)-[:PRODUCES]->(Production Batch 9999)
+Production Batch HAS Quality Data
+
+(Production Batch 9999)-[:HAS_QUALITY_DATA]->(Quality Data 9999)
+Production Batch FOLLOWS SOP
+
+(Production Batch 9999)-[:FOLLOWS]->(SOP 1)
+Non-Conformity Record RELATES TO Process
+
+(Non-Conformity Record 9999)-[:RELATES_TO]->(Process 9999)
+Non-Conformity Record RELATES TO Quality Data
+
+(Non-Conformity Record 9999)-[:RELATES_TO]->(Quality Data 9999)
