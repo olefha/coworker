@@ -5,12 +5,11 @@ import "reflect-metadata"; // Required by TypeORM
 import "dotenv/config";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { Neo4jGraph } from "@langchain/community/graphs/neo4j_graph";
-import { GraphCypherQAChain } from "langchain/chains/graph_qa/cypher";
+import { GraphCypherQAChain } from "@langchain/community/chains/graph_qa/cypher";
 import { SqlDatabaseChain } from "langchain/chains/sql_db";
 import { ChatOpenAI } from "@langchain/openai";
 import { AIMessage } from "@langchain/core/messages";
-// import { ChatOllama, Ollama } from "@langchain/ollama";
-// import { createSQLChain } from "./sqlChainService";
+// import { ChatOllama } from "@langchain/ollama";
 // Initialize LLMs
 const openAIApiKey = process.env.OPENAI_API_KEY;
 
@@ -20,9 +19,11 @@ const llm = new ChatOpenAI({
   modelName: "gpt-3.5-turbo",
 });
 
-// const ollama = new ChatOllama({
-//   model: "llama3.1",
+// const model = new ChatOllama({
+//   model: "llama3", // Default value.
 // });
+
+// const result = model.invoke(["human", "Hello, how are you?"]);
 
 // Define your custom prompt for SQL
 const sqlPrompt = new PromptTemplate({
@@ -144,7 +145,7 @@ export const handleUserQuestion = async (
       llm,
       graph: neo4jGraph,
       returnDirect: true,
-      qaPrompt: graphPrompt, // remove or change this
+      qaPrompt: graphPrompt, // Remove or change this
     });
 
     // Generate and Execute Cypher Query
