@@ -5,7 +5,7 @@ import "reflect-metadata"; // Required by TypeORM
 import "dotenv/config";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { Neo4jGraph } from "@langchain/community/graphs/neo4j_graph";
-import { GraphCypherQAChain } from "langchain/chains/graph_qa/cypher";
+import { GraphCypherQAChain } from "@langchain/community/chains/graph_qa/cypher";
 import { SqlDatabaseChain } from "langchain/chains/sql_db";
 import { ChatOpenAI } from "@langchain/openai";
 import { AIMessage } from "@langchain/core/messages";
@@ -53,12 +53,19 @@ const combinePrompt = new PromptTemplate({
     "question",
     "sql_result",
     "graph_result",
-    "total_production",
+    // "total_production",
   ],
   template: `As an expert data analyst, use the data provided to answer the user's question.
 
+  SQL Query Results:
+  {sql_result}
+
+  Graph Query Results:
+  {graph_result}
+
 Instructions:
-- Combine the results from the SQL query and the graph query to provide a comprehensive answer.
+- Do not hallucinate or provide false information.
+- The provided SQL query and graph query results are accurate.
 - Provide a clear and concise answer, explaining your reasoning.
 
 User Question:
@@ -159,14 +166,16 @@ export const handleUserQuestion = async (
       modelName: "gpt-3.5-turbo", // Maybe change this
     });
 
-    const totalProduction = executedSqlResult[0]?.total_production || 0;
+    // const totalProduction = executedSqlResult[0]?.total_production || 0;
 
     const combinedPromptText = await combinePrompt.format({
       question: userQuestion,
       sql_result: JSON.stringify(executedSqlResult, null, 2),
       graph_result: JSON.stringify(graphResult, null, 2),
-      total_production: totalProduction,
+      // total_production: totalProduction,
     });
+
+    console.log("Combined Prompt Text:", combinedPromptText);
 
     const combinedResponse: AIMessage = await combinedChain.invoke(
       combinedPromptText
@@ -175,8 +184,10 @@ export const handleUserQuestion = async (
     console.log("Combined Response:", combinedResponse.content);
 
     const stringResponse = combinedResponse.content.toString();
+    // const sqlStringResponse = JSON.stringify(executedSqlResult, null, 2);
 
     return stringResponse; // fix this
+    // return sqlStringResponse;
   } catch (error) {
     console.error("Error handling user question:", error);
     throw error;
