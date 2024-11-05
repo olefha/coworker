@@ -1,0 +1,99 @@
+Entity: ShiftProcessLogs
+Attributes:
+- log_id (int, Primary Key)
+- shift_date (date)
+- shift_number (varchar)
+- operator_name (varchar)
+- log_entry (text)
+
+Entity: sop_data
+Attributes:
+- sop_id (int, Primary Key)
+- procedure_name (varchar)
+- description (text)
+- version (varchar)
+- date (date)
+- last_updated (timestamp)
+- spec_limits (varchar)
+- process_guidelines (text)
+
+Entity: RawMaterialInput
+Attributes:
+- material_id (int, Primary Key)
+- arrival_date (date)
+- supplier_name (varchar)
+- material_type (enum)
+- quantity (decimal)
+- unit (varchar)
+- quality_check (varchar)
+- remarks (text)
+
+Entity: ProcessData
+Attributes:
+- process_id (int, Primary Key)
+- process_name (varchar)
+- start_time (timestamp)
+- end_time (timestamp)
+- temperature (decimal)
+- pressure (decimal)
+- flow_rate (decimal)
+
+Entity: NonConformityRecords
+Attributes:
+- record_id (int, Primary Key)
+- deviation_date (date)
+- description (text)
+- severity (enum)
+- action_taken (text)
+- resolved_date (date)
+
+Entity: Reports
+Attributes:
+- report_id (int, Primary Key)
+- report_type (enum)
+- start_date (date)
+- end_date (date)
+- report_content (text)
+
+Entity: ProductionData
+Attributes:
+- production_id (int, Primary Key)
+- product_name (varchar)
+- batch_number (varchar)
+- quantity (decimal)
+- unit (varchar)
+- production_date (date)
+
+Entity: QualityData
+Attributes:
+- quality_id (int, Primary Key)
+- batch_number (varchar)
+- fat_content (decimal)
+- protein_content (decimal)
+- bacteria_count (int)
+- pH_level (decimal)
+- test_date (timestamp)
+
+Relationship: ShiftProcessLogs LINKS_TO ProcessData
+Description: Each entry in ShiftProcessLogs is associated with one or more entries in ProcessData, indicating the processes carried out during a specific shift.
+
+Relationship: RawMaterialInput LINKS_TO ProcessData
+Description: Raw materials supplied in RawMaterialInput are utilized in ProcessData entries, linking suppliers and materials to specific processes.
+
+Relationship: ProcessData PRODUCES ProductionData
+Description: Each process recorded in ProcessData results in the production of goods recorded in ProductionData.
+
+Relationship: ProductionData LINKS_TO QualityData
+Description: The batch_number in ProductionData links to QualityData, associating production batches with their respective quality measurements.
+
+Relationship: ProductionData AFFECTS NonConformityRecords
+Description: Issues or deviations related to production batches are recorded in NonConformityRecords, linking specific productions to non-conformities.
+
+Relationship: Reports SUMMARIZES NonConformityRecords
+Description: Reports summarize data from NonConformityRecords, providing aggregated views of deviations and resolutions.
+
+Relationship: sop_data GUIDES ProcessData
+Description: Standard Operating Procedures (sop_data) guide the execution of processes recorded in ProcessData, ensuring compliance with established guidelines.
+
+Relationship: Reports INCLUDES QualityData
+Description: Reports include summaries and details from QualityData, offering insights into product quality over specified periods.

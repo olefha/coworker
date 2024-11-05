@@ -103,6 +103,7 @@ const initializeNeo4jGraph = async () => {
     url: neo4jUrl!,
     username: neo4jUsername!,
     password: neo4jPassword!,
+    database: "baseline",
   });
 
   console.log("Neo4j Graph initialized successfully.");
