@@ -23,11 +23,17 @@ const llm = new ChatOpenAI({
 const graphPrompt = new PromptTemplate({
   inputVariables: ["question"],
   template: `
-  You are an expert at retrieving information from a knowledge graph. 
-  Given the a user question, search through the knowledge graph to find relevant nodes and relationships between these, 
-  and provide a detailed description of your findings. 
-  
-  Question: {question}
+  You are an expert at querying knowledge graphs with Cypher. Given a user question, dynamically traverse the graph to find relevant entities, relationships, and attributes.
+
+  **User Question**: {question}
+
+  **Instructions**:
+  1. Identify entities, relationships, and attributes relevant to the question by exploring the graph.
+  2. Traverse "has_attribute" relationships to retrieve each entity’s attributes and data types if they are relevant to the question.
+  3. Generate a Cypher query that retrieves:
+     - Entity names, direct and indirect relationships,
+     - Attributes (name, datatype, and any other metadata).
+  4. Return as much context as possible, especially attributes and relationships that may be indirectly relevant.
   
   Findings:`,
 });
@@ -99,12 +105,16 @@ export const handleUserQuestion = async (
       qaPrompt: graphPrompt,
     });
 
+    console.log("-------------------------------------------------------");
     //Generate and Execute Cypher Query
     const graphResult = await graphChain.invoke({ question: userQuestion });
+
+    // TODO: maybe access the graphResult.result list of objects to find info
     console.log("Graph Query Result:", graphResult.result);
 
     const formattedGraphInfo = await formatGraphRelationships(graphResult);
     console.log("Formatted Graph Relationships:", formattedGraphInfo);
+    console.log("-------------------------------------------------------");
 
     //SQL Database
     const sqlDatabase = await SqlDatabase.fromDataSourceParams({
@@ -170,7 +180,7 @@ export const handleUserQuestion = async (
 
     // Execute Query
     const executedSqlResult = await dataSource.query(generatedSql);
-    console.log("SQL Query Result:", executedSqlResult);
+    // console.log("SQL Query Result:", executedSqlResult);
 
     // Combine Results Using Third LLM
     const combinedChain = new ChatOpenAI({
@@ -183,19 +193,14 @@ export const handleUserQuestion = async (
       question: userQuestion,
       sql_result: JSON.stringify(executedSqlResult, null, 2),
     });
-    console.log(
-      userQuestion,
-      JSON.stringify(executedSqlResult, null, 2),
-      formattedGraphInfo
-    );
 
-    console.log("Combined Prompt Text:", combinedPromptText);
+    // console.log("Combined Prompt Text:", combinedPromptText);
 
     const combinedResponse: AIMessage = await combinedChain.invoke(
       combinedPromptText
     );
 
-    console.log("Combined Response:", combinedResponse.content);
+    // console.log("Combined Response:", combinedResponse.content);
 
     const stringResponse = combinedResponse.content.toString();
     return stringResponse; // fix this
