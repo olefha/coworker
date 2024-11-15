@@ -20,23 +20,27 @@ const llm = new ChatOpenAI({
   modelName: "gpt-3.5-turbo",
 });
 
+const graphLLM = new ChatOpenAI({
+  openAIApiKey: openAIApiKey,
+  temperature: 0,
+  modelName: "gpt-4",
+});
+
 const graphPrompt = new PromptTemplate({
   inputVariables: ["question"],
   template: `
-  You are an expert at querying knowledge graphs with Cypher. Given a user question, dynamically traverse the graph to find relevant entities, relationships, and attributes.
 
-  **User Question**: {question}
+**User Question**: Have we documented any non-conformities?
 
-  **Instructions**:
-  1. Identify entities, relationships, and attributes relevant to the question by exploring the graph.
-  2. Traverse "has_attribute" relationships to retrieve each entity’s attributes and data types if they are relevant to the question.
-  3. Generate a Cypher query that retrieves:
-     - Entity names, direct and indirect relationships,
-     - Attributes (name, datatype, and any other metadata).
-  4. Return as much context as possible, especially attributes and relationships that may be indirectly relevant.
-  
-  Findings:`,
+
+**Instructions**:
+1. Analyze the user question to identify key entities with their respective attributes and relationships between these entities.
+2. Return every piece of information you can from the knowledge graph. 
+
+Answer: 
+`,
 });
+console.log(graphPrompt.inputVariables);
 
 const combinePrompt = new PromptTemplate({
   inputVariables: ["question", "sql_result"],
@@ -96,15 +100,19 @@ export const handleUserQuestion = async (
   const dataSource = await initializeDataSource();
   const neo4jGraph = await initializeNeo4jGraph();
   console.log(userQuestion);
+
   try {
     // Graph info retrieval
-    const graphChain = GraphCypherQAChain.fromLLM({
+    const graphChain = await GraphCypherQAChain.fromLLM({
       llm,
       graph: neo4jGraph,
-      returnDirect: true,
+      returnDirect: false,
       qaPrompt: graphPrompt,
     });
 
+    if (userQuestion) {
+      console.log(userQuestion);
+    }
     console.log("-------------------------------------------------------");
     //Generate and Execute Cypher Query
     const graphResult = await graphChain.invoke({ question: userQuestion });
@@ -112,8 +120,12 @@ export const handleUserQuestion = async (
     // TODO: maybe access the graphResult.result list of objects to find info
     console.log("Graph Query Result:", graphResult.result);
 
-    const formattedGraphInfo = await formatGraphRelationships(graphResult);
-    console.log("Formatted Graph Relationships:", formattedGraphInfo);
+    // const formattedGraphInfo = await formatGraphRelationships(graphResult);
+    // console.log("Formatted Graph Relationships:", formattedGraphInfo);
+    console.log("-------------------------------------------------------");
+
+    console.log("-------------------------------------------------------");
+    console.log("Full Graph Result:", JSON.stringify(graphResult, null, 2));
     console.log("-------------------------------------------------------");
 
     //SQL Database
@@ -137,7 +149,7 @@ export const handleUserQuestion = async (
 
   **Knowledge Graph Relationships**:
   - These are the known relationships that can guide you in constructing SQL joins and selecting fields:
-  ${formattedGraphInfo}
+  ${graphResult.result}
 
   **Instructions**:
   1. Analyze the user’s question to determine the necessary data and fields.
