@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // services/fullRetrieverService.ts
 import { SqlDatabase } from "langchain/sql_db";
 import { DataSource } from "typeorm";
@@ -20,11 +19,11 @@ const llm = new ChatOpenAI({
   modelName: "gpt-3.5-turbo",
 });
 
-const graphLLM = new ChatOpenAI({
-  openAIApiKey: openAIApiKey,
-  temperature: 0,
-  modelName: "gpt-4",
-});
+// const graphLLM = new ChatOpenAI({
+//   openAIApiKey: openAIApiKey,
+//   temperature: 0,
+//   modelName: "gpt-4",
+// });
 
 const graphPrompt = new PromptTemplate({
   inputVariables: ["question"],
@@ -175,24 +174,35 @@ export const handleUserQuestion = async (
       // knowledge_graph_information: formattedGraphInfo,
     });
     let generatedSql = sqlResult.sql_answer;
-    const startDelimiter = "/* START */";
-    const endDelimiter = "/* END */";
 
-    if (
-      generatedSql.includes(startDelimiter) &&
-      generatedSql.includes(endDelimiter)
-    ) {
-      generatedSql = generatedSql
-        .split(startDelimiter)[1]
-        .split(endDelimiter)[0]
-        .trim();
+    // Define Markdown SQL code block delimiters
+    const startDelimiter = "```sql";
+    const endDelimiter = "```";
+
+    // Function to extract SQL from Markdown code block
+    function extractSql(markdown: string): string {
+      const startIndex = markdown.indexOf(startDelimiter);
+      const endIndex = markdown.lastIndexOf(endDelimiter);
+
+      if (startIndex !== -1 && endIndex !== -1 && endIndex > startIndex) {
+        // Extract the content between the delimiters
+        return markdown
+          .substring(startIndex + startDelimiter.length, endIndex)
+          .trim();
+      } else {
+        // If no delimiters are found, return the original string
+        return markdown.trim();
+      }
     }
+
+    // Extract the pure SQL query
+    generatedSql = extractSql(generatedSql);
 
     console.log("Generated SQL Query:", generatedSql);
 
     // Execute Query
     const executedSqlResult = await dataSource.query(generatedSql);
-    // console.log("SQL Query Result:", executedSqlResult);
+    console.log("SQL Query Result:", executedSqlResult);
 
     // Combine Results Using Third LLM
     const combinedChain = new ChatOpenAI({
@@ -230,14 +240,14 @@ export const handleUserQuestion = async (
 };
 
 // Helper function to format graph relationships
-const formatGraphRelationships = (graphResult: any): string => {
-  if (!graphResult || !graphResult.result) return "No relationships found.";
+// const formatGraphRelationships = (graphResult: any): string => {
+//   if (!graphResult || !graphResult.result) return "No relationships found.";
 
-  return graphResult.result
-    .map((relation: any, index: number) => {
-      const from = relation.e1.name;
-      const to = relation.e2.name;
-      return `${index + 1}. ${from} is related to ${to}`;
-    })
-    .join("\n");
-};
+//   return graphResult.result
+//     .map((relation: any, index: number) => {
+//       const from = relation.e1.name;
+//       const to = relation.e2.name;
+//       return `${index + 1}. ${from} is related to ${to}`;
+//     })
+//     .join("\n");
+// };
