@@ -19,18 +19,15 @@ const llm = new ChatOpenAI({
   modelName: "gpt-3.5-turbo",
 });
 
-// const graphLLM = new ChatOpenAI({
-//   openAIApiKey: openAIApiKey,
-//   temperature: 0,
-//   modelName: "gpt-4",
-// });
+// maybe add this: 1. You have access to a knowledge graph of a processing dairy plant, containing information about Entities with attributes and relationships to other Entities use this.
 
 const graphPrompt = new PromptTemplate({
   inputVariables: ["question"],
   template: `
-
-**User Question**: Have we documented any non-conformities?
-
+Todays date is 2024-10-19.
+  
+**User Question**: 
+Have we documented any non-conformities since yesterday?
 
 **Instructions**:
 1. Analyze the user question to identify key entities with their respective attributes and relationships between these entities.
@@ -44,6 +41,8 @@ console.log(graphPrompt.inputVariables);
 const combinePrompt = new PromptTemplate({
   inputVariables: ["question", "sql_result"],
   template: `
+  Todays date is 2024-10-19.
+
   As an expert data analyst, use the data provided to answer the user's question.
 
   SQL Query Results:
@@ -98,7 +97,8 @@ export const handleUserQuestion = async (
   // Initialize Data Source and Graph
   const dataSource = await initializeDataSource();
   const neo4jGraph = await initializeNeo4jGraph();
-  console.log(userQuestion);
+  console.log("User Question: ", userQuestion);
+  console.log("-------------------------------------------------------");
 
   try {
     // Graph info retrieval
@@ -109,22 +109,11 @@ export const handleUserQuestion = async (
       qaPrompt: graphPrompt,
     });
 
-    if (userQuestion) {
-      console.log(userQuestion);
-    }
-    console.log("-------------------------------------------------------");
     //Generate and Execute Cypher Query
     const graphResult = await graphChain.invoke({ question: userQuestion });
 
     // TODO: maybe access the graphResult.result list of objects to find info
-    console.log("Graph Query Result:", graphResult.result);
-
-    // const formattedGraphInfo = await formatGraphRelationships(graphResult);
-    // console.log("Formatted Graph Relationships:", formattedGraphInfo);
-    console.log("-------------------------------------------------------");
-
-    console.log("-------------------------------------------------------");
-    console.log("Full Graph Result:", JSON.stringify(graphResult, null, 2));
+    console.log("Graph Query Result: \n", graphResult.result);
     console.log("-------------------------------------------------------");
 
     //SQL Database
@@ -134,16 +123,23 @@ export const handleUserQuestion = async (
 
     const tableInfo = await sqlDatabase.getTableInfo();
 
+    // const tableInfo = await getDatabaseSchema(dataSource);
+
+    // console.log("Table Info: \n", tableInfo);
+    // console.log("-------------------------------------------------------");
+
     const sqlPrompt = new PromptTemplate({
       inputVariables: ["input", "table_info"],
       template: `
+  Todays date is 2024-10-19.
+
   You are an expert SQL query generator with full access to the database schema and a static knowledge graph that describes relationships between entities. 
   Use this background information to create a precise SQL query based on the user’s question.
 
   **User Question:**
   {input}
 
-  **Database Table Information:**
+  **Only use the following tables:**
   {table_info}
 
   **Knowledge Graph Relationships**:
@@ -171,7 +167,6 @@ export const handleUserQuestion = async (
     const sqlResult = await sqlChain.invoke({
       query: userQuestion,
       table_info: tableInfo,
-      // knowledge_graph_information: formattedGraphInfo,
     });
     let generatedSql = sqlResult.sql_answer;
 
@@ -198,11 +193,13 @@ export const handleUserQuestion = async (
     // Extract the pure SQL query
     generatedSql = extractSql(generatedSql);
 
-    console.log("Generated SQL Query:", generatedSql);
+    console.log("Generated SQL Query: \n", generatedSql);
+    console.log("-------------------------------------------------------");
 
     // Execute Query
     const executedSqlResult = await dataSource.query(generatedSql);
-    console.log("SQL Query Result:", executedSqlResult);
+    console.log("SQL Query Result: \n", executedSqlResult);
+    console.log("-------------------------------------------------------");
 
     // Combine Results Using Third LLM
     const combinedChain = new ChatOpenAI({
@@ -216,8 +213,6 @@ export const handleUserQuestion = async (
       sql_result: JSON.stringify(executedSqlResult, null, 2),
     });
 
-    // console.log("Combined Prompt Text:", combinedPromptText);
-
     const combinedResponse: AIMessage = await combinedChain.invoke(
       combinedPromptText
     );
@@ -225,6 +220,9 @@ export const handleUserQuestion = async (
     // console.log("Combined Response:", combinedResponse.content);
 
     const stringResponse = combinedResponse.content.toString();
+    console.log("Combined response: \n", stringResponse);
+    console.log("-------------------------------------------------------");
+
     return stringResponse; // fix this
   } catch (error) {
     console.error("Error handling user question:", error);
@@ -250,4 +248,37 @@ export const handleUserQuestion = async (
 //       return `${index + 1}. ${from} is related to ${to}`;
 //     })
 //     .join("\n");
+// };
+
+// // Function to retrieve the database schema
+// const getDatabaseSchema = async (dataSource: any): Promise<string> => {
+//   const schemaQuery = `
+//     SELECT table_name, column_name, data_type, is_nullable
+//     FROM information_schema.columns
+//     WHERE table_schema = 'public'
+//     ORDER BY table_name, ordinal_position;
+//   `;
+
+//   try {
+//     const result = await dataSource.query(schemaQuery);
+
+//     // Format the schema information
+//     let schema = "";
+//     let currentTable = "";
+
+//     for (const row of result.rows) {
+//       if (row.table_name !== currentTable) {
+//         currentTable = row.table_name;
+//         schema += `\nTable: ${currentTable}\n`;
+//       }
+//       schema += `  - ${row.column_name} (${row.data_type}) ${
+//         row.is_nullable === "YES" ? "NULL" : "NOT NULL"
+//       }\n`;
+//     }
+
+//     return schema;
+//   } catch (error) {
+//     console.error("Error fetching database schema:", error);
+//     throw error;
+//   }
 // };
