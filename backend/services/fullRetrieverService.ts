@@ -18,25 +18,15 @@ const llm = new ChatOpenAI({
   temperature: 0,
   modelName: "gpt-3.5-turbo",
 });
+const graphLLM = new ChatOpenAI({
+  openAIApiKey: openAIApiKey,
+  temperature: 0,
+  modelName: "gpt-4o-mini",
+});
 
 // maybe add this: 1. You have access to a knowledge graph of a processing dairy plant, containing information about Entities with attributes and relationships to other Entities use this.
 
-const graphPrompt = new PromptTemplate({
-  inputVariables: ["question"],
-  template: `
-Todays date is 2024-10-19.
-  
-**User Question**: 
-Have we documented any non-conformities since yesterday?
-
-**Instructions**:
-1. Analyze the user question to identify key entities with their respective attributes and relationships between these entities.
-2. Return every piece of information you can from the knowledge graph. 
-
-Answer: 
-`,
-});
-console.log(graphPrompt.inputVariables);
+// console.log(graphPrompt.inputVariables);
 
 const combinePrompt = new PromptTemplate({
   inputVariables: ["question", "sql_result"],
@@ -90,6 +80,35 @@ const initializeNeo4jGraph = async () => {
   return neo4jGraph;
 };
 
+// Define a type for chat history entries
+interface ChatHistoryEntry {
+  question: string;
+  response: string;
+}
+
+// Initialize chat history array
+const chatHistory: ChatHistoryEntry[] = [];
+
+// Function to add an entry to the chat history
+const addToChatHistory = (question: string, response: string) => {
+  chatHistory.push({ question, response });
+};
+
+// Function to get the chat history
+export const getChatHistory = (): ChatHistoryEntry[] => {
+  return chatHistory;
+};
+
+// Function to format chat history for inclusion in prompts
+const formatChatHistory = (history: ChatHistoryEntry[]): string => {
+  return history
+    .map(
+      (entry, index) =>
+        `Q${index + 1}: ${entry.question}\nA${index + 1}: ${entry.response}`
+    )
+    .join("\n\n");
+};
+
 // Handle User Question
 export const handleUserQuestion = async (
   userQuestion: string
@@ -100,10 +119,31 @@ export const handleUserQuestion = async (
   console.log("User Question: ", userQuestion);
   console.log("-------------------------------------------------------");
 
+  const chatHistoryContext = formatChatHistory(chatHistory);
+
+  const graphPrompt = new PromptTemplate({
+    inputVariables: ["question"],
+    template: `
+  Todays date is 2024-10-19.
+
+  **Chat History**:
+  ${chatHistoryContext}
+    
+  **User Question**: 
+  ${userQuestion}
+  
+  **Instructions**:
+  1. Analyze the user question to identify key entities with their respective attributes and relationships between these entities.
+  2. Return every piece of information you can from the knowledge graph. 
+  
+  Answer: 
+  `,
+  });
+
   try {
     // Graph info retrieval
     const graphChain = await GraphCypherQAChain.fromLLM({
-      llm,
+      llm: graphLLM,
       graph: neo4jGraph,
       returnDirect: false,
       qaPrompt: graphPrompt,
@@ -136,6 +176,9 @@ export const handleUserQuestion = async (
   You are an expert SQL query generator with full access to the database schema and a static knowledge graph that describes relationships between entities. 
   Use this background information to create a precise SQL query based on the user’s question.
 
+  **Chat History**:
+  ${chatHistoryContext}
+
   **User Question:**
   {input}
 
@@ -165,7 +208,7 @@ export const handleUserQuestion = async (
 
     // Generate SQL Query
     const sqlResult = await sqlChain.invoke({
-      query: userQuestion,
+      query: `${chatHistoryContext}\n\nCurrent Question: ${userQuestion}`,
       table_info: tableInfo,
     });
     let generatedSql = sqlResult.sql_answer;
@@ -209,7 +252,7 @@ export const handleUserQuestion = async (
     });
 
     const combinedPromptText = await combinePrompt.format({
-      question: userQuestion,
+      question: `${chatHistoryContext}\n\nCurrent Question: ${userQuestion}`,
       sql_result: JSON.stringify(executedSqlResult, null, 2),
     });
 
@@ -222,7 +265,7 @@ export const handleUserQuestion = async (
     const stringResponse = combinedResponse.content.toString();
     console.log("Combined response: \n", stringResponse);
     console.log("-------------------------------------------------------");
-
+    addToChatHistory(userQuestion, stringResponse);
     return stringResponse; // fix this
   } catch (error) {
     console.error("Error handling user question:", error);
