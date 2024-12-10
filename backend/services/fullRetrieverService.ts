@@ -9,8 +9,7 @@ import { GraphCypherQAChain } from "@langchain/community/chains/graph_qa/cypher"
 import { SqlDatabaseChain } from "langchain/chains/sql_db";
 import { ChatOpenAI } from "@langchain/openai";
 import { AIMessage } from "@langchain/core/messages";
-// import { ChatOllama, Ollama } from "@langchain/ollama";
-// import { createSQLChain } from "./sqlChainService";
+
 // Initialize LLMs
 const openAIApiKey = process.env.OPENAI_API_KEY;
 
@@ -19,59 +18,30 @@ const llm = new ChatOpenAI({
   temperature: 0,
   modelName: "gpt-3.5-turbo",
 });
-
-// const ollama = new ChatOllama({
-//   model: "llama3.1",
-// });
-
-// Define your custom prompt for SQL
-const sqlPrompt = new PromptTemplate({
-  inputVariables: ["input", "table_info"],
-  template: `Given the following table definitions:
-  
-  {table_info}
-  
-  If the input is a question try to translate the following question into a SQL query that works with the given tables:
-  
-  Question: {input}
-  
-  SQL Query:`,
+const graphLLM = new ChatOpenAI({
+  openAIApiKey: openAIApiKey,
+  temperature: 0,
+  modelName: "gpt-4o-mini",
 });
 
-const graphPrompt = new PromptTemplate({
-  inputVariables: ["question"],
-  template: `You are an expert in process analysis using graph data. Given a Neo4j graph database that includes data about relationships in a processing plan, traverse the graph to find relevante nodes and generate a Cypher query to retrieve the value needed to answer the following question:
-  
-  Question: {question}
-  
-  Cypher Query:`,
-});
+// maybe add this: 1. You have access to a knowledge graph of a processing dairy plant, containing information about Entities with attributes and relationships to other Entities use this.
 
-// Define a prompt for combining results (third LLM)
+// console.log(graphPrompt.inputVariables);
+
 const combinePrompt = new PromptTemplate({
-  inputVariables: [
-    "question",
-    "sql_result",
-    "graph_result",
-    // "total_production",
-  ],
-  template: `As an expert data analyst, use the data provided to answer the user's question.
+  inputVariables: ["question", "sql_result"],
+  template: `
+  Todays date is 2024-10-19.
+
+  As an expert data analyst, use the data provided to answer the user's question.
 
   SQL Query Results:
   {sql_result}
+  
+  User Question:
+  {question}
 
-  Graph Query Results:
-  {graph_result}
-
-Instructions:
-- Do not hallucinate or provide false information.
-- The provided SQL query and graph query results are accurate.
-- Provide a clear and concise answer, explaining your reasoning.
-
-User Question:
-{question}
-
-Answer:`,
+  Answer:`,
 });
 
 // Initialize Data Source (PostgreSQL)
@@ -103,10 +73,40 @@ const initializeNeo4jGraph = async () => {
     url: neo4jUrl!,
     username: neo4jUsername!,
     password: neo4jPassword!,
+    database: "baseline",
   });
 
   console.log("Neo4j Graph initialized successfully.");
   return neo4jGraph;
+};
+
+// Define a type for chat history entries
+interface ChatHistoryEntry {
+  question: string;
+  response: string;
+}
+
+// Initialize chat history array
+const chatHistory: ChatHistoryEntry[] = [];
+
+// Function to add an entry to the chat history
+const addToChatHistory = (question: string, response: string) => {
+  chatHistory.push({ question, response });
+};
+
+// Function to get the chat history
+export const getChatHistory = (): ChatHistoryEntry[] => {
+  return chatHistory;
+};
+
+// Function to format chat history for inclusion in prompts
+const formatChatHistory = (history: ChatHistoryEntry[]): string => {
+  return history
+    .map(
+      (entry, index) =>
+        `Q${index + 1}: ${entry.question}\nA${index + 1}: ${entry.response}`
+    )
+    .join("\n\n");
 };
 
 // Handle User Question
@@ -116,18 +116,90 @@ export const handleUserQuestion = async (
   // Initialize Data Source and Graph
   const dataSource = await initializeDataSource();
   const neo4jGraph = await initializeNeo4jGraph();
+  console.log("User Question: ", userQuestion);
+  console.log("-------------------------------------------------------");
+
+  const chatHistoryContext = formatChatHistory(chatHistory);
+
+  const graphPrompt = new PromptTemplate({
+    inputVariables: ["question"],
+    template: `
+  Todays date is 2024-10-19.
+
+  **Chat History**:
+  ${chatHistoryContext}
+    
+  **User Question**: 
+  ${userQuestion}
+  
+  **Instructions**:
+  1. Analyze the user question to identify key entities with their respective attributes and relationships between these entities.
+  2. Return every piece of information you can from the knowledge graph. 
+  
+  Answer: 
+  `,
+  });
 
   try {
-    // Initialize SQL Database
+    // Graph info retrieval
+    const graphChain = await GraphCypherQAChain.fromLLM({
+      llm: graphLLM,
+      graph: neo4jGraph,
+      returnDirect: false,
+      qaPrompt: graphPrompt,
+    });
+
+    //Generate and Execute Cypher Query
+    const graphResult = await graphChain.invoke({ question: userQuestion });
+
+    // TODO: maybe access the graphResult.result list of objects to find info
+    console.log("Graph Query Result: \n", graphResult.result);
+    console.log("-------------------------------------------------------");
+
+    //SQL Database
     const sqlDatabase = await SqlDatabase.fromDataSourceParams({
       appDataSource: dataSource,
-      //   sampleRowsInTableInfo: 2,
     });
 
     const tableInfo = await sqlDatabase.getTableInfo();
 
+    // const tableInfo = await getDatabaseSchema(dataSource);
+
+    // console.log("Table Info: \n", tableInfo);
+    // console.log("-------------------------------------------------------");
+
+    const sqlPrompt = new PromptTemplate({
+      inputVariables: ["input", "table_info"],
+      template: `
+  Todays date is 2024-10-19.
+
+  You are an expert SQL query generator with full access to the database schema and a static knowledge graph that describes relationships between entities. 
+  Use this background information to create a precise SQL query based on the user’s question.
+
+  **Chat History**:
+  ${chatHistoryContext}
+
+  **User Question:**
+  {input}
+
+  **Only use the following tables:**
+  {table_info}
+
+  **Knowledge Graph Relationships**:
+  - These are the known relationships that can guide you in constructing SQL joins and selecting fields:
+  ${graphResult.result}
+
+  **Instructions**:
+  1. Analyze the user’s question to determine the necessary data and fields.
+  2. Use the **Knowledge Graph Relationships** to guide your use of joins, conditions, or filters based on related tables.
+  3. Generate an SQL query that answers the question precisely, using joins and aggregation as needed.
+
+  **SQL Query Output**:
+  - Output only the final SQL query, ready to execute without any explanations or additional text.`,
+    });
+
     // Initialize SQL Chain
-    const sqlChain: SqlDatabaseChain = new SqlDatabaseChain({
+    const sqlChain: SqlDatabaseChain = await new SqlDatabaseChain({
       llm,
       database: sqlDatabase,
       prompt: sqlPrompt,
@@ -136,28 +208,41 @@ export const handleUserQuestion = async (
 
     // Generate SQL Query
     const sqlResult = await sqlChain.invoke({
-      query: userQuestion,
+      query: `${chatHistoryContext}\n\nCurrent Question: ${userQuestion}`,
       table_info: tableInfo,
     });
-    const generatedSql = sqlResult.sql_answer;
-    console.log("Generated SQL Query:", generatedSql);
+    let generatedSql = sqlResult.sql_answer;
+
+    // Define Markdown SQL code block delimiters
+    const startDelimiter = "```sql";
+    const endDelimiter = "```";
+
+    // Function to extract SQL from Markdown code block
+    function extractSql(markdown: string): string {
+      const startIndex = markdown.indexOf(startDelimiter);
+      const endIndex = markdown.lastIndexOf(endDelimiter);
+
+      if (startIndex !== -1 && endIndex !== -1 && endIndex > startIndex) {
+        // Extract the content between the delimiters
+        return markdown
+          .substring(startIndex + startDelimiter.length, endIndex)
+          .trim();
+      } else {
+        // If no delimiters are found, return the original string
+        return markdown.trim();
+      }
+    }
+
+    // Extract the pure SQL query
+    generatedSql = extractSql(generatedSql);
+
+    console.log("Generated SQL Query: \n", generatedSql);
+    console.log("-------------------------------------------------------");
 
     // Execute Query
     const executedSqlResult = await dataSource.query(generatedSql);
-    console.log("SQL Query Result:", executedSqlResult);
-
-    // Initialize Graph Chain
-    const graphChain = GraphCypherQAChain.fromLLM({
-      llm,
-      graph: neo4jGraph,
-      returnDirect: true,
-      qaPrompt: graphPrompt, // remove or change this
-    });
-
-    // Generate and Execute Cypher Query
-    const graphResult = await graphChain.invoke({ question: userQuestion });
-    console.log("Graph Query Result:", graphResult);
-    console.log("Graph Query Result:", graphResult.result);
+    console.log("SQL Query Result: \n", executedSqlResult);
+    console.log("-------------------------------------------------------");
 
     // Combine Results Using Third LLM
     const combinedChain = new ChatOpenAI({
@@ -166,28 +251,22 @@ export const handleUserQuestion = async (
       modelName: "gpt-3.5-turbo", // Maybe change this
     });
 
-    // const totalProduction = executedSqlResult[0]?.total_production || 0;
-
     const combinedPromptText = await combinePrompt.format({
-      question: userQuestion,
+      question: `${chatHistoryContext}\n\nCurrent Question: ${userQuestion}`,
       sql_result: JSON.stringify(executedSqlResult, null, 2),
-      graph_result: JSON.stringify(graphResult, null, 2),
-      // total_production: totalProduction,
     });
-
-    console.log("Combined Prompt Text:", combinedPromptText);
 
     const combinedResponse: AIMessage = await combinedChain.invoke(
       combinedPromptText
     );
 
-    console.log("Combined Response:", combinedResponse.content);
+    // console.log("Combined Response:", combinedResponse.content);
 
     const stringResponse = combinedResponse.content.toString();
-    // const sqlStringResponse = JSON.stringify(executedSqlResult, null, 2);
-
+    console.log("Combined response: \n", stringResponse);
+    console.log("-------------------------------------------------------");
+    addToChatHistory(userQuestion, stringResponse);
     return stringResponse; // fix this
-    // return sqlStringResponse;
   } catch (error) {
     console.error("Error handling user question:", error);
     throw error;
@@ -200,3 +279,49 @@ export const handleUserQuestion = async (
     console.log("Neo4j Graph connection closed.");
   }
 };
+
+// Helper function to format graph relationships
+// const formatGraphRelationships = (graphResult: any): string => {
+//   if (!graphResult || !graphResult.result) return "No relationships found.";
+
+//   return graphResult.result
+//     .map((relation: any, index: number) => {
+//       const from = relation.e1.name;
+//       const to = relation.e2.name;
+//       return `${index + 1}. ${from} is related to ${to}`;
+//     })
+//     .join("\n");
+// };
+
+// // Function to retrieve the database schema
+// const getDatabaseSchema = async (dataSource: any): Promise<string> => {
+//   const schemaQuery = `
+//     SELECT table_name, column_name, data_type, is_nullable
+//     FROM information_schema.columns
+//     WHERE table_schema = 'public'
+//     ORDER BY table_name, ordinal_position;
+//   `;
+
+//   try {
+//     const result = await dataSource.query(schemaQuery);
+
+//     // Format the schema information
+//     let schema = "";
+//     let currentTable = "";
+
+//     for (const row of result.rows) {
+//       if (row.table_name !== currentTable) {
+//         currentTable = row.table_name;
+//         schema += `\nTable: ${currentTable}\n`;
+//       }
+//       schema += `  - ${row.column_name} (${row.data_type}) ${
+//         row.is_nullable === "YES" ? "NULL" : "NOT NULL"
+//       }\n`;
+//     }
+
+//     return schema;
+//   } catch (error) {
+//     console.error("Error fetching database schema:", error);
+//     throw error;
+//   }
+// };
