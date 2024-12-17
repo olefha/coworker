@@ -131,8 +131,9 @@ export const handleUserQuestion = async (
   ${userQuestion}
   
   **Instructions**:
-  1. Analyze the user question to identify key entities with their respective attributes and relationships between these entities.
-  2. Return every piece of relevant information you can from the knowledge graph. 
+  1. Only use the Chat History if it is relevant for the question, sometimes it is not.
+  2. Analyze the user question to identify key entities with their respective attributes and relationships between these entities.
+  3. Return every piece of relevant information you can from the knowledge graph. 
   
   Answer: 
   `,
