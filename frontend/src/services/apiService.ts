@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// // services/apiService.ts
 
 import axios from "axios";
 

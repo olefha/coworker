@@ -1,4 +1,3 @@
-// services/fullRetrieverService.ts
 import { SqlDatabase } from "langchain/sql_db";
 import { DataSource } from "typeorm";
 import "reflect-metadata"; // Required by TypeORM
@@ -18,15 +17,15 @@ const llm = new ChatOpenAI({
   temperature: 0,
   modelName: "gpt-3.5-turbo",
 });
+
+// This is unique in order to test different models for graph relatec tasks
 const graphLLM = new ChatOpenAI({
   openAIApiKey: openAIApiKey,
   temperature: 0,
-  modelName: "gpt-4o-mini",
+  modelName: "gpt-3.5-turbo",
 });
 
 // maybe add this: 1. You have access to a knowledge graph of a processing dairy plant, containing information about Entities with attributes and relationships to other Entities use this.
-
-// console.log(graphPrompt.inputVariables);
 
 const combinePrompt = new PromptTemplate({
   inputVariables: ["question", "sql_result"],
@@ -80,7 +79,6 @@ const initializeNeo4jGraph = async () => {
   return neo4jGraph;
 };
 
-// Define a type for chat history entries
 interface ChatHistoryEntry {
   question: string;
   response: string;
@@ -113,7 +111,7 @@ const formatChatHistory = (history: ChatHistoryEntry[]): string => {
 export const handleUserQuestion = async (
   userQuestion: string
 ): Promise<string> => {
-  // Initialize Data Source and Graph
+  // Initialize Data Sources
   const dataSource = await initializeDataSource();
   const neo4jGraph = await initializeNeo4jGraph();
   console.log("User Question: ", userQuestion);
@@ -134,7 +132,7 @@ export const handleUserQuestion = async (
   
   **Instructions**:
   1. Analyze the user question to identify key entities with their respective attributes and relationships between these entities.
-  2. Return every piece of information you can from the knowledge graph. 
+  2. Return every piece of relevant information you can from the knowledge graph. 
   
   Answer: 
   `,
@@ -162,11 +160,6 @@ export const handleUserQuestion = async (
     });
 
     const tableInfo = await sqlDatabase.getTableInfo();
-
-    // const tableInfo = await getDatabaseSchema(dataSource);
-
-    // console.log("Table Info: \n", tableInfo);
-    // console.log("-------------------------------------------------------");
 
     const sqlPrompt = new PromptTemplate({
       inputVariables: ["input", "table_info"],
@@ -248,7 +241,7 @@ export const handleUserQuestion = async (
     const combinedChain = new ChatOpenAI({
       openAIApiKey: openAIApiKey,
       temperature: 0,
-      modelName: "gpt-3.5-turbo", // Maybe change this
+      modelName: "gpt-3.5-turbo",
     });
 
     const combinedPromptText = await combinePrompt.format({
@@ -260,13 +253,11 @@ export const handleUserQuestion = async (
       combinedPromptText
     );
 
-    // console.log("Combined Response:", combinedResponse.content);
-
     const stringResponse = combinedResponse.content.toString();
     console.log("Combined response: \n", stringResponse);
     console.log("-------------------------------------------------------");
     addToChatHistory(userQuestion, stringResponse);
-    return stringResponse; // fix this
+    return stringResponse;
   } catch (error) {
     console.error("Error handling user question:", error);
     throw error;
@@ -274,54 +265,7 @@ export const handleUserQuestion = async (
     // Clean up resources
     //await dataSource.destroy();
     console.log("PostgreSQL Database connection closed.");
-    // Assuming Neo4jGraph has a close method; if not, adjust accordingly
     //await neo4jGraph.close();
     console.log("Neo4j Graph connection closed.");
   }
 };
-
-// Helper function to format graph relationships
-// const formatGraphRelationships = (graphResult: any): string => {
-//   if (!graphResult || !graphResult.result) return "No relationships found.";
-
-//   return graphResult.result
-//     .map((relation: any, index: number) => {
-//       const from = relation.e1.name;
-//       const to = relation.e2.name;
-//       return `${index + 1}. ${from} is related to ${to}`;
-//     })
-//     .join("\n");
-// };
-
-// // Function to retrieve the database schema
-// const getDatabaseSchema = async (dataSource: any): Promise<string> => {
-//   const schemaQuery = `
-//     SELECT table_name, column_name, data_type, is_nullable
-//     FROM information_schema.columns
-//     WHERE table_schema = 'public'
-//     ORDER BY table_name, ordinal_position;
-//   `;
-
-//   try {
-//     const result = await dataSource.query(schemaQuery);
-
-//     // Format the schema information
-//     let schema = "";
-//     let currentTable = "";
-
-//     for (const row of result.rows) {
-//       if (row.table_name !== currentTable) {
-//         currentTable = row.table_name;
-//         schema += `\nTable: ${currentTable}\n`;
-//       }
-//       schema += `  - ${row.column_name} (${row.data_type}) ${
-//         row.is_nullable === "YES" ? "NULL" : "NOT NULL"
-//       }\n`;
-//     }
-
-//     return schema;
-//   } catch (error) {
-//     console.error("Error fetching database schema:", error);
-//     throw error;
-//   }
-// };

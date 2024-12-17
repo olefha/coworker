@@ -2,7 +2,6 @@
 
 import "dotenv/config";
 import { Neo4jGraph } from "@langchain/community/graphs/neo4j_graph";
-//import { IMSDBLoader } from 'langchain/document_loaders/web/imsdb';
 import { TokenTextSplitter } from "langchain/text_splitter";
 import { ChatOpenAI } from "@langchain/openai";
 import { LLMGraphTransformer } from "@langchain/community/experimental/graph_transformers/llm";

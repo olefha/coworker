@@ -1,5 +1,3 @@
-// routes/questionRoute.ts
-
 import express, { Request, Response } from "express";
 import { handleUserQuestion } from "../services/fullRetrieverService";
 
