@@ -141,7 +141,7 @@ export const handleUserQuestion = async (
 
   try {
     // Graph info retrieval
-    const graphChain = await GraphCypherQAChain.fromLLM({
+    const graphChain = GraphCypherQAChain.fromLLM({
       llm: graphLLM,
       graph: neo4jGraph,
       returnDirect: false,
@@ -155,7 +155,7 @@ export const handleUserQuestion = async (
     console.log("Graph Query Result: \n", graphResult.result);
     console.log("-------------------------------------------------------");
 
-    //SQL Database
+    //SQL Database Init
     const sqlDatabase = await SqlDatabase.fromDataSourceParams({
       appDataSource: dataSource,
     });
@@ -193,7 +193,7 @@ export const handleUserQuestion = async (
     });
 
     // Initialize SQL Chain
-    const sqlChain: SqlDatabaseChain = await new SqlDatabaseChain({
+    const sqlChain: SqlDatabaseChain = new SqlDatabaseChain({
       llm,
       database: sqlDatabase,
       prompt: sqlPrompt,
@@ -205,6 +205,7 @@ export const handleUserQuestion = async (
       query: `${chatHistoryContext}\n\nCurrent Question: ${userQuestion}`,
       table_info: tableInfo,
     });
+
     let generatedSql = sqlResult.sql_answer;
 
     // Define Markdown SQL code block delimiters
