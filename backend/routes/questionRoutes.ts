@@ -1,7 +1,7 @@
 // routes/questionRoute.ts
 
 import express, { Request, Response } from "express";
-import { handleUserQuestion } from "../services/fullRetrieverService";
+import { handleUserQuestion } from "../sol1/src/index";
 
 const router = express.Router();
 

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// frontend/src/components/CombinedChatInterface.tsx
 
 import React, { useState, useRef, useEffect } from "react";
 import { askQuestion } from "../services/apiService";
@@ -10,7 +9,7 @@ interface Message {
   timestamp: Date;
 }
 
-const CombinedChatInterface: React.FC = () => {
+const CoworkerChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -149,4 +148,4 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 };
 
-export default CombinedChatInterface;
+export default CoworkerChatInterface;
