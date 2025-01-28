@@ -1,5 +1,3 @@
-// scripts/populateGraph.ts
-
 import "dotenv/config";
 import { Neo4jGraph } from "@langchain/community/graphs/neo4j_graph";
 //import { IMSDBLoader } from 'langchain/document_loaders/web/imsdb';
