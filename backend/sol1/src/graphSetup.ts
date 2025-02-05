@@ -92,7 +92,7 @@ export async function createGraph(
   const model = new ChatOpenAI({
     temperature: 0,
     openAIApiKey: process.env.OPENAI_API_KEY,
-    // modelName: "gpt-4o",
+    // model: "gpt-4o",
   });
   const modelWithTools = model.bindTools(tools) as ChatOpenAI;
 
