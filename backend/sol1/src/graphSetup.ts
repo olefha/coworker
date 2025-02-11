@@ -85,9 +85,9 @@ export async function createGraph(
   openAIApiKey: string
 ) {
   const neo4jTool = await createNeo4jTool(neo4jGraph, openAIApiKey);
-  const postgresTool = await createPostgresTool(dataSource, openAIApiKey, 5);
+  // const postgresTool = await createPostgresTool(dataSource, openAIApiKey, 5);
 
-  const tools = [neo4jTool, postgresTool];
+  const tools = [neo4jTool]; //, postgresTool];
 
   const model = new ChatOpenAI({
     temperature: 0,

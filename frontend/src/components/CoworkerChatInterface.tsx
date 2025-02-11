@@ -106,6 +106,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: "flex",
     flexDirection: "column",
     height: "80vh",
+    backgroundColor: "",
   },
   chatBox: {
     flex: 1,

@@ -60,7 +60,7 @@ export async function initializeAll() {
 
   // Get database table info
   const tableInfoStr = await sqlDatabase.getTableInfo();
-  // console.log("tableInfoStr: ", tableInfoStr);
+  console.log("tableInfoStr: ", tableInfoStr);
 
   const agentPrompt = `
   Today's date is 2024-10-19, ergo CURRENT_DATE=2024-10-19.
@@ -74,18 +74,18 @@ export async function initializeAll() {
   Never guess or hallucinate data not in the tool result.
   If you produce a different numeric answer than the tool’s data, you are violating the policy.
 
-  Users will ask you questions that require you to retrieve data from a database, you have two tools available for this:
-  1. "neo4jTool" for retreiving relationship/structural info from the Neo4j graph. Use this to strengthen your knowledge of how the data is structured in the postgres database.
-  2. "postgresTool" for retreiving (generating and running queries) data from the database.
-  Only use this schema when generating and querying with the "postgresTool":
-  ${tableInfoStr}
-  If the "postgresTool" returns 0 or sum to zero, it is most likely that you will need to query a different table and calculate the total yourself. 
+  Users will ask you questions that require you to retrieve data from a database, you have one tool available for this:
+  1. "neo4jTool" - to retreive information about the Dairy plant to answer the user's questions.
   You will get bonus points for reasoning and finding answers that are not explicitly stated in the database, but requires you to calculate them based on several datapoints. 
   Maximum production capacity is 53857 Liters. 
   If asked about process variation, answer with the mean and standard deviation of factores you think are important to the process. 
   You are able to iterate back and forth and make several tool calls to answer the question. 
   After you have retrieved the data, present it in natural language.
   `;
+  // 2. "postgresTool" for retreiving (generating and running queries) data from the database.
+  // Only use this schema when generating and querying with the "postgresTool":
+  // ${tableInfoStr}
+  // If the "postgresTool" returns 0 or sum to zero, it is most likely that you will need to query a different table and calculate the total yourself.
 
   const openAIApiKey = process.env.OPENAI_API_KEY!;
 
