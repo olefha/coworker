@@ -2,7 +2,7 @@ import "reflect-metadata";
 import "dotenv/config";
 import { DataSource } from "typeorm";
 import { Neo4jGraph } from "@langchain/community/graphs/neo4j_graph";
-import { SqlDatabase } from "langchain/sql_db";
+// import { SqlDatabase } from "langchain/sql_db";
 import { createGraph } from "./graphSetup";
 import { HumanMessage } from "@langchain/core/messages";
 
@@ -34,7 +34,7 @@ async function initializeNeo4jGraph(): Promise<Neo4jGraph> {
     url: neo4jUrl!,
     username: neo4jUsername!,
     password: neo4jPassword!,
-    database: "sol1",
+    database: "sol2",
   });
 
   console.log("Neo4j Graph initialized successfully.");
@@ -54,34 +54,47 @@ export async function initializeAll() {
   dataSourceSingleton = await initializeDataSource();
   neo4jGraphSingleton = await initializeNeo4jGraph();
 
-  const sqlDatabase = await SqlDatabase.fromDataSourceParams({
-    appDataSource: dataSourceSingleton,
-  });
+  // const sqlDatabase = await SqlDatabase.fromDataSourceParams({
+  //   appDataSource: dataSourceSingleton,
+  // });
 
   // Get database table info
-  const tableInfoStr = await sqlDatabase.getTableInfo();
-  console.log("tableInfoStr: ", tableInfoStr);
+  // const tableInfoStr = await sqlDatabase.getTableInfo();
+  // console.log("tableInfoStr: ", tableInfoStr);
 
   const agentPrompt = `
   Today's date is 2024-10-19, ergo CURRENT_DATE=2024-10-19.
 
-  You are an AI that must strictly use the final tool result to produce your final answer. 
-  Do NOT mix in or overwrite it with other data. 
+  You are an AI assistant for the Main Dairy Plant.
+  You have access to a knowledge graph / database containing all the data about the Dairy Plant.
+  Mostly all user questions will be answerd by retrieving data from the knowledge graph. 
+  Users will ask you questions that require you to retrieve data from a neo4j knowledge graph, you have one tool available for this:
+  1. "neo4jTool" - takes in the original user question, uses a chain to convert it into a cypher query, and returns the result from the database.
 
-  If the question does not specify a particular date the question should be assumed that it pertains to the previous day.
+  If you see a valid tool result, your final answer must reflect that entire result.
+  And you can then present it in natural language without doing another tool call. 
 
-  If you see a valid tool result, your final answer must reflect that entire result. 
-  Never guess or hallucinate data not in the tool result.
-  If you produce a different numeric answer than the tool’s data, you are violating the policy.
-
-  Users will ask you questions that require you to retrieve data from a database, you have one tool available for this:
-  1. "neo4jTool" - to retreive information about the Dairy plant to answer the user's questions.
-  You will get bonus points for reasoning and finding answers that are not explicitly stated in the database, but requires you to calculate them based on several datapoints. 
-  Maximum production capacity is 53857 Liters. 
-  If asked about process variation, answer with the mean and standard deviation of factores you think are important to the process. 
-  You are able to iterate back and forth and make several tool calls to answer the question. 
-  After you have retrieved the data, present it in natural language.
   `;
+  // When you get the response from the tool, you must present it in natural language.
+
+  // try sending in schema above
+
+  // You are an AI that must strictly use the final tool result to produce your final answer.
+  // Do NOT mix in or overwrite it with other data.
+
+  // If the question does not specify a particular date the question should be assumed that it pertains to the previous day.
+
+  // If you see a valid tool result, your final answer must reflect that entire result.
+  // Never guess or hallucinate data not in the tool result.
+  // If you produce a different numeric answer than the tool’s data, you are violating the policy.
+
+  // Users will ask you questions that require you to retrieve data from a database, you have one tool available for this:
+  // 1. "neo4jTool" - to retreive information about the Dairy plant to answer the user's questions.
+  // You will get bonus points for reasoning and finding answers that are not explicitly stated in the database, but requires you to calculate them based on several datapoints.
+  // Maximum production capacity is 53857 Liters.
+  // If asked about process variation, answer with the mean and standard deviation of factores you think are important to the process.
+  // You are able to iterate back and forth and make several tool calls to answer the question.
+  // After you have retrieved the data, present it in natural language.
   // 2. "postgresTool" for retreiving (generating and running queries) data from the database.
   // Only use this schema when generating and querying with the "postgresTool":
   // ${tableInfoStr}
