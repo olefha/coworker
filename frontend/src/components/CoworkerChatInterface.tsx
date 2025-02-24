@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import React, { useState, useRef, useEffect } from "react";
+// import ReactMarkdown from "react-markdown";
 import { askQuestion } from "../services/apiService";
 
 interface Message {
@@ -44,7 +43,7 @@ const CoworkerChatInterface: React.FC = () => {
 
     try {
       const aiResponse = await askQuestion(userMessage.content);
-      console.log("AI Response from askQuestion:", aiResponse); // For debugging
+      console.log("AI Response from askQuestion:", aiResponse);
 
       const aiMessage: Message = {
         sender: "ai",
@@ -52,6 +51,7 @@ const CoworkerChatInterface: React.FC = () => {
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, aiMessage]);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error("Error:", err);
       setError(err.message || "Failed to get response from server.");
@@ -71,9 +71,14 @@ const CoworkerChatInterface: React.FC = () => {
               ...styles.message,
               alignSelf: msg.sender === "user" ? "flex-end" : "flex-start",
               backgroundColor: msg.sender === "user" ? "#dcf8c6" : "#fff",
+              whiteSpace: "pre-wrap",
             }}
           >
-            <span>{msg.content}</span>
+            {msg.sender === "user" ? (
+              <span>{msg.content}</span>
+            ) : (
+              <div style={styles.markdownContainer}>{msg.content}</div>
+            )}
           </div>
         ))}
         <div ref={messagesEndRef} />
@@ -98,7 +103,7 @@ const CoworkerChatInterface: React.FC = () => {
 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
-    maxWidth: "600px",
+    maxWidth: "800px", // Increased for better markdown readability
     margin: "2rem auto",
     padding: "1rem",
     border: "1px solid #ccc",
@@ -118,11 +123,45 @@ const styles: { [key: string]: React.CSSProperties } = {
     borderRadius: "4px",
   },
   message: {
-    maxWidth: "80%",
-    padding: "0.5rem 1rem",
-    marginBottom: "0.5rem",
-    borderRadius: "20px",
-    boxShadow: "0 1px 1px rgba(0,0,0,0.1)",
+    maxWidth: "90%", // Increased for better markdown readability
+    padding: "1rem",
+    marginBottom: "1rem",
+    borderRadius: "12px",
+    boxShadow: "0 1px 2px rgba(0,0,0,0.1)",
+  },
+  markdownContainer: {
+    "& p": {
+      margin: "0.5em 0",
+    },
+    "& h1": {
+      fontSize: "1.5em",
+      marginTop: "1em",
+      marginBottom: "0.5em",
+    },
+    "& h2": {
+      fontSize: "1.3em",
+      marginTop: "0.8em",
+      marginBottom: "0.4em",
+    },
+    "& ul, & ol": {
+      marginLeft: "1.5em",
+    },
+    "& code": {
+      backgroundColor: "#f0f0f0",
+      padding: "0.2em 0.4em",
+      borderRadius: "3px",
+    },
+    "& pre": {
+      backgroundColor: "#f0f0f0",
+      padding: "0.5em",
+      borderRadius: "5px",
+      overflowX: "auto",
+    },
+    "& hr": {
+      border: "none",
+      borderTop: "1px solid #ccc",
+      margin: "1em 0",
+    },
   },
   form: {
     display: "flex",

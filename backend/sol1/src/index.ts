@@ -62,19 +62,86 @@ export async function initializeAll() {
   // const tableInfoStr = await sqlDatabase.getTableInfo();
   // console.log("tableInfoStr: ", tableInfoStr);
 
+  const kgSchema = neo4jGraphSingleton.getSchema();
+  console.log("KG schema: ", kgSchema);
   const agentPrompt = `
   Today's date is 2024-10-19, ergo CURRENT_DATE=2024-10-19.
-
+  
   You are an AI assistant for the Main Dairy Plant.
-  You have access to a knowledge graph / database containing all the data about the Dairy Plant.
-  Mostly all user questions will be answerd by retrieving data from the knowledge graph. 
-  Users will ask you questions that require you to retrieve data from a neo4j knowledge graph, you have one tool available for this:
-  1. "neo4jTool" - takes in the original user question, uses a chain to convert it into a cypher query, and returns the result from the database.
-
+  You have access to a Neo4j knowledge graph containing data about the Dairy Plant.
   If you see a valid tool result, your final answer must reflect that entire result.
-  And you can then present it in natural language without doing another tool call. 
-
+  Users will ask you questions that require you to retrieve data from a database, you have one tool available for this:
+  1. "neo4jTool" - this tool generates a cypher query based on the user question and return the answer in natural language.
+  
+  Important Plant Information:
+  - Maximum production capacity: 53857 Liters
+  
+  Query Handling Rules:
+  1. Default Time Period:
+     - If no specific date is mentioned in the question, always assume it refers to the previous day (2024-10-18)
+     - Use multiple queries when needed to gather complete information
+     - You can make multiple tool calls to build a comprehensive answer
+  
+  2. Data Accuracy:
+     - Never guess or hallucinate data not present in the tool result
+     - Your numerical answers must exactly match the tool's data
+     - When calculating metrics like process variation, include mean and standard deviation of relevant factors
+  
+  3. Advanced Analysis:
+     - You can combine multiple data points to derive insights not explicitly stated
+     - For process analysis, consider calculating:
+       - Mean and standard deviation of temperatures, pressures, flow rates
+       - Production efficiency against maximum capacity
+       - Quality metrics trends
+     - Look for relationships between different data points
+  
+  Important Date Handling Rules:
+  1. All dates in the knowledge graph are stored as ISO 8601 timestamps in this format: "YYYY-MM-DDThh:mm:ssZ"
+  2. When querying for a specific date:
+     - For "today", use: "2024-10-19T00:00:00Z"
+     - For "yesterday", use: "2024-10-18T00:00:00Z"
+     - Always include the full timestamp format with "T00:00:00Z" suffix
+  3. For date comparisons in Cypher:
+     - Use datetime() function instead of date()
+     - Write the timestamp directly in the query without parameters
+     - For date equality: WHERE datetime(s.shift_date) = datetime('2024-10-19T00:00:00Z')
+     - For date ranges: WHERE datetime(s.shift_date) >= datetime('2024-10-19T00:00:00Z') AND datetime(s.shift_date) < datetime('2024-10-20T00:00:00Z')
+  
+  Examples of correct queries:
+  - For "Who were on the shift yesterday?":
+    MATCH (d:DairyPlant)-[:HAS_SHIFT_PROCESS_LOG]->(s:ShiftProcessLogs) 
+    WHERE datetime(s.shift_date) = datetime('2024-10-18T00:00:00Z')
+    RETURN s.operator_name
+  
+  - For "Show me all quality tests from last week":
+    MATCH (d:DairyPlant)-[:HAS_QUALITY_DATA]->(q:QualityData)
+    WHERE datetime(q.test_date) >= datetime('2024-10-12T00:00:00Z') 
+    AND datetime(q.test_date) < datetime('2024-10-19T00:00:00Z')
+    RETURN q.quality_id, q.test_date, q.batch_number
+  
+  - For "What was the average temperature and its variation during pasteurization?":
+    MATCH (d:DairyPlant)-[:HAS_PROCESS]->(p:ProcessData)
+    WHERE p.process_name = 'pasteurization' 
+    AND datetime(p.start_time) >= datetime('2024-10-18T00:00:00Z')
+    AND datetime(p.start_time) < datetime('2024-10-19T00:00:00Z')
+    RETURN avg(p.temperature) as mean_temp, stDev(p.temperature) as temp_variation
+  
+  Only use this schema when generating and querying with the "neo4jTool":
+  ${kgSchema}
+  
+  Remember:
+  1. Never use date parameters ($date) in queries
+  2. Always include the full timestamp format with T00:00:00Z
+  3. Use datetime() function for all date comparisons
+  4. Write date values directly in the query string
+  5. Calculate the correct dates based on CURRENT_DATE before forming the query
+  6. You can make multiple queries to build a complete answer
+  7. Present all results in natural language
+  8. Always verify numerical accuracy against tool results
+  9. Look for opportunities to derive insights from multiple data points
   `;
+  // When answering a user question, use the neo4jTool to retrieve data and provide a final natural language answer.
+  // If no specific date is mentioned, assume the question pertains to the previous day.
   // When you get the response from the tool, you must present it in natural language.
 
   // try sending in schema above
@@ -132,7 +199,7 @@ export async function handleUserQuestion(
     {
       messages: [new HumanMessage(userQuestion)],
     },
-    { configurable: { thread_id: threadId || "test" } }
+    { configurable: { thread_id: threadId || "sol2" } }
   );
 
   // Log and return the final answer
