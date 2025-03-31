@@ -80,7 +80,6 @@ function shouldContinue(state: typeof StateAnnotation.State) {
 export async function createGraph(
   neo4jGraph: Neo4jGraph,
   dataSource: DataSource,
-
   prompt: string,
   openAIApiKey: string
 ) {
@@ -92,7 +91,7 @@ export async function createGraph(
   const model = new ChatOpenAI({
     temperature: 0,
     openAIApiKey: process.env.OPENAI_API_KEY,
-    // modelName: "gpt-4o",
+    // model: "gpt-4o",
   });
   const modelWithTools = model.bindTools(tools) as ChatOpenAI;
 

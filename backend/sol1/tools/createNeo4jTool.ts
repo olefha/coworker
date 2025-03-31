@@ -4,13 +4,6 @@ import { ChatOpenAI } from "@langchain/openai";
 import { GraphCypherQAChain } from "@langchain/community/chains/graph_qa/cypher";
 import { Neo4jGraph } from "@langchain/community/graphs/neo4j_graph";
 
-/**
- * Creates a function-calling Tool for Neo4j queries via GraphCypherQAChain.
- *
- * @param neo4jGraph   An initialized Neo4jGraph instance
- * @param openAIApiKey OpenAI API Key
- * @returns A LangChain tool(...) object
- */
 export async function createNeo4jTool(
   neo4jGraph: Neo4jGraph,
   openAIApiKey: string
@@ -18,35 +11,66 @@ export async function createNeo4jTool(
   const graphLLM = new ChatOpenAI({
     openAIApiKey,
     temperature: 0,
-    modelName: "gpt-3.5-turbo",
+    modelName: "gpt-4o",
   });
 
-  // Create the GraphCypherQAChain - built in langChanin method - to generate and query graph
+  // Enable intermediate steps to capture where the agent looked in the graph.
   const graphChain = GraphCypherQAChain.fromLLM({
     llm: graphLLM,
     graph: neo4jGraph,
-    returnDirect: false,
+    returnDirect: false, // may change to true for faster responses
+    returnIntermediateSteps: true, // Enable intermediate steps
   });
 
-  // Build the function-calling tool
+  async function runWithRetries(query: string) {
+    let attempts = 0;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let lastError: any;
+    while (attempts < 3) {
+      try {
+        console.log("Neo4jTool Invoked: ------------------");
+        console.log("Cypher Query: ", query);
+        const result = await graphChain.invoke({ query });
+        // Log intermediate steps to see where the agent looked in the graph -> TODO: remove when evaluating performance
+        if (result.intermediateSteps) {
+          console.log(
+            "Intermediate Steps: ",
+            JSON.stringify(result.intermediateSteps, null, 2)
+          );
+        }
+        console.log("ToolResult: ", result.result);
+        return result.result;
+      } catch (err) {
+        console.log("Neo4jTool retried");
+        console.error(err);
+        lastError = err;
+        attempts++;
+      }
+    }
+    throw lastError;
+  }
+
   const neo4jTool = tool(
-    async ({ question }: { question: string }) => {
-      // The agent passes { question }, and feed that into graphChain
-      console.log("---------- neo4jTool used! ------------");
-      const result = await graphChain.invoke({ question });
-      return result.result;
+    async ({ query }: { query: string }) => {
+      return await runWithRetries(query);
     },
     {
       name: "neo4jTool",
-      description:
-        "Use this tool to query the Neo4j knowledge graph for relationship/structural info about the postgresql database to enhance your knowledge of the database.",
+      description: `
+        Use this tool to send a valid CYPHER statement to the knowledge graph.
+        Rules:
+        - **No** explanations or commentary.
+        - **Do not** wrap the CYPHER in backticks or code fences.
+        - Provide exactly one CYPHER statement in the "query" field.
+      `,
       schema: z.object({
-        question: z
+        query: z
           .string()
-          .describe("A question or partial Cypher query for the Neo4j graph"),
+          .describe(
+            "A single, valid CYPHER statement. No commentary. No markdown."
+          ),
       }),
     }
   );
-
   return neo4jTool;
 }

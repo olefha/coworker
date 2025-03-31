@@ -13,16 +13,17 @@
     "populate-kg": "ts-node scripts/populateKnowledgeGraph.ts",
     "load-text-kg": "ts-node scripts/populateKnowledgeGraphText.ts",
     "get-data": "ts-node services/fullRetrieverService.ts",
-    "eval": "ts-node sol1/evaluation.ts"
+    "eval": "ts-node sol1/evaluation.ts",
+    "load-csv-kg": "ts-node kg_and_csv/neo4jLoader.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@langchain/community": "^0.3.3",
-    "@langchain/core": "^0.3.4",
+    "@langchain/core": "^0.3.37",
     "@langchain/langgraph": "^0.2.41",
-    "@langchain/openai": "^0.3.2",
+    "@langchain/openai": "^0.3.17",
     "axios": "^1.7.7",
     "cors": "^2.8.5",
     "csv-parser": "^3.0.0",

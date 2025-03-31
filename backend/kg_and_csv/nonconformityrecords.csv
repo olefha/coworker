@@ -1,0 +1,146 @@
+record_id,deviation_date,description,severity,action_taken,resolved_date
+1,2024-05-13T14:50:25,Delayed fermentation for yogurt,Low,Increased culture inoculum amount.,2024-05-16T14:50:25
+2,2024-06-08T13:16:43,Yield efficiency below target,Low,Optimized process parameters to minimize waste.,2024-06-09T13:16:43
+3,2024-05-11T21:39:43,Shortcut in electrical system,High,Conducted electrical inspection and repair.,2024-05-14T21:39:43
+4,2024-08-05T21:35:32,Excessive downtime in CIP system,Low,Revised CIP (Clean-In-Place) schedule and improved efficiency.,2024-08-08T21:35:32
+5,2024-04-28T04:07:04,Low shelf life for yogurt,Low,Reviewed and adjusted fermentation process.,2024-04-29T04:07:04
+6,2024-06-06T04:16:42,Power fluctuation causing machine downtime,High,Installed an additional uninterruptible power supply (UPS).,2024-06-09T04:16:42
+7,2024-08-08T23:35:29,Overheating in pasteurizer,Low,Adjusted temperature settings to optimal range.,2024-08-11T23:35:29
+8,2024-09-05T04:24:40,Delayed fermentation for yogurt,High,Increased culture inoculum amount.,2024-09-07T04:24:40
+9,2024-07-18T05:27:57,Clog in pasteurizer,High,Cleared clog and cleaned entire pasteurizer.,2024-07-20T05:27:57
+10,2024-10-07T19:13:59,Flavor inconsistency in yogurt,Low,Standardized ingredient proportions more strictly.,2024-10-08T19:13:59
+11,2024-07-13T01:31:33,Raw milk delivery temperature above 4°C,Medium,Requested new delivery protocol from supplier.,2024-07-15T01:31:33
+12,2024-06-02T19:26:05,Raw milk temperature too high during offloading,Medium,Adjusted chiller settings and monitored closely.,2024-06-03T19:26:05
+14,2024-06-27T18:56:59,Inefficiency in milk clarification,High,Enhanced clarification process and reassessed equipment.,2024-06-29T18:56:59
+15,2024-04-30T10:29:37,Flavor inconsistency in yogurt,High,Standardized ingredient proportions more strictly.,2024-05-02T10:29:37
+16,2024-05-16T05:43:55,High spoilage rate of raw milk,Medium,Improved storage conditions and conducted training for handling.,2024-05-17T05:43:55
+17,2024-06-17T22:18:35,High spoilage rate of raw milk,High,Improved storage conditions and conducted training for handling.,2024-06-20T22:18:35
+18,2024-10-06T07:50:42,Excessive downtime in CIP system,Medium,Revised CIP (Clean-In-Place) schedule and improved efficiency.,2024-10-09T07:50:42
+19,2024-09-05T19:32:33,Power fluctuation causing machine downtime,Low,Installed an additional uninterruptible power supply (UPS).,2024-09-06T19:32:33
+20,2024-06-05T06:04:58,Excessive machine noise,Medium,Lubricated moving parts and tightened loose components.,2024-06-06T06:04:58
+21,2024-06-06T04:53:02,Inefficiency in milk clarification,Low,Enhanced clarification process and reassessed equipment.,2024-06-08T04:53:02
+22,2024-07-19T01:02:42,Yield efficiency below target,High,Optimized process parameters to minimize waste.,2024-07-21T01:02:42
+23,2024-07-02T21:10:06,Low protein content in raw milk,Medium,"Procured milk from an alternative, higher-quality supplier.",2024-07-03T21:10:06
+24,2024-06-12T20:12:24,Excessive machine noise,High,Lubricated moving parts and tightened loose components.,2024-06-15T20:12:24
+25,2024-05-05T20:45:35,Delayed fermentation for yogurt,High,Increased culture inoculum amount.,2024-05-08T20:45:35
+26,2024-08-03T17:16:20,Low protein content in raw milk,High,"Procured milk from an alternative, higher-quality supplier.",2024-08-04T17:16:20
+27,2024-07-20T18:17:19,Low protein content in raw milk,Medium,"Procured milk from an alternative, higher-quality supplier.",2024-07-22T18:17:19
+28,2024-08-24T06:36:54,Inconsistent product weight in packaging,High,Calibrated filling machines and conducted more frequent checks.,2024-08-27T06:36:54
+29,2024-09-01T22:32:01,Clog in pasteurizer,Medium,Cleared clog and cleaned entire pasteurizer.,2024-09-02T22:32:01
+30,2024-09-28T13:52:39,Clog in pasteurizer,Low,Cleared clog and cleaned entire pasteurizer.,2024-09-30T13:52:39
+31,2024-06-12T23:45:46,Delayed milk delivery,Low,Coordinated with supplier for timely delivery and ensured alternative sources.,2024-06-13T23:45:46
+32,2024-08-10T03:15:02,Inconsistent product weight in packaging,High,Calibrated filling machines and conducted more frequent checks.,2024-08-12T03:15:02
+33,2024-08-27T06:33:56,Power fluctuation causing machine downtime,Medium,Installed an additional uninterruptible power supply (UPS).,2024-08-29T06:33:56
+34,2024-10-16T14:06:02,Excessive downtime in CIP system,High,Revised CIP (Clean-In-Place) schedule and improved efficiency.,2024-10-18T14:06:02
+35,2024-06-12T10:25:51,Raw milk temperature too high during offloading,Low,Adjusted chiller settings and monitored closely.,2024-06-13T10:25:51
+36,2024-08-09T00:09:54,Shortcut in electrical system,High,Conducted electrical inspection and repair.,2024-08-11T00:09:54
+37,2024-08-13T12:22:05,Shortcut in electrical system,Medium,Conducted electrical inspection and repair.,2024-08-16T12:22:05
+38,2024-07-01T07:01:32,Delayed milk delivery,Low,Coordinated with supplier for timely delivery and ensured alternative sources.,2024-07-02T07:01:32
+39,2024-07-26T19:57:01,Inconsistent cream separation,Low,Calibrated cream separator.,2024-07-27T19:57:01
+40,2024-05-13T07:00:07,Inefficiency in milk clarification,Low,Enhanced clarification process and reassessed equipment.,2024-05-16T07:00:07
+41,2024-09-22T19:21:26,Low protein content in raw milk,High,"Procured milk from an alternative, higher-quality supplier.",2024-09-24T19:21:26
+42,2024-05-04T08:03:38,Incorrect fat content in pasteurized milk,Medium,Rechecked and adjusted homogenizer settings.,2024-05-06T08:03:38
+43,2024-07-21T21:16:14,Incorrect fat content in pasteurized milk,High,Rechecked and adjusted homogenizer settings.,2024-07-23T21:16:14
+44,2024-10-06T03:31:26,High spoilage rate of raw milk,Low,Improved storage conditions and conducted training for handling.,2024-10-09T03:31:26
+45,2024-05-14T05:50:59,Shortcut in electrical system,High,Conducted electrical inspection and repair.,2024-05-17T05:50:59
+46,2024-06-12T19:29:43,High moisture content in powdered milk,High,Extended drying process.,2024-06-14T19:29:43
+47,2024-06-17T23:48:35,Separator drum vibration,Medium,Balanced and tightened separator drum.,2024-06-18T23:48:35
+48,2024-04-22T15:07:27,Butter moisture content too high,High,Modified churning time and temperature.,2024-04-25T15:07:27
+49,2024-07-28T04:54:01,Yield efficiency below target,Low,Optimized process parameters to minimize waste.,2024-07-31T04:54:01
+50,2024-05-12T15:54:37,Inconsistent product weight in packaging,High,Calibrated filling machines and conducted more frequent checks.,2024-05-14T15:54:37
+51,2024-08-24T01:43:13,Leakage in pasteurizer piping,High,Replaced faulty pipe immediately.,2024-08-27T01:43:13
+52,2024-05-21T16:16:57,Power fluctuation causing machine downtime,Medium,Installed an additional uninterruptible power supply (UPS).,2024-05-22T16:16:57
+53,2024-09-20T04:39:44,High spoilage rate of raw milk,High,Improved storage conditions and conducted training for handling.,2024-09-21T04:39:44
+54,2024-06-23T22:40:36,Incorrect fat content in pasteurized milk,Medium,Rechecked and adjusted homogenizer settings.,2024-06-24T22:40:36
+55,2024-10-19T09:54:48,Separator drum vibration,Medium,Balanced and tightened separator drum.,2024-10-21T09:54:48
+56,2024-05-03T05:57:03,Clog in pasteurizer,Low,Cleared clog and cleaned entire pasteurizer.,2024-05-06T05:57:03
+57,2024-05-07T07:02:04,Delayed shift changeover leading to downtime,Low,Improved shift handover procedures with detailed logging.,2024-05-10T07:02:04
+58,2024-09-27T10:56:38,Cheese moisture content too low,Low,Adjusted curd draining time.,2024-09-30T10:56:38
+59,2024-05-16T10:05:11,High moisture content in powdered milk,Low,Extended drying process.,2024-05-19T10:05:11
+60,2024-08-06T18:16:13,Cheese moisture content too low,Low,Adjusted curd draining time.,2024-08-08T18:16:13
+61,2024-10-08T09:49:57,Inconsistent cream separation,High,Calibrated cream separator.,2024-10-10T09:49:57
+62,2024-06-02T03:03:04,Delayed shift changeover leading to downtime,High,Improved shift handover procedures with detailed logging.,2024-06-05T03:03:04
+63,2024-05-31T01:25:54,Raw milk delivery temperature above 4°C,High,Requested new delivery protocol from supplier.,2024-06-02T01:25:54
+64,2024-08-30T10:17:17,Delayed milk delivery,High,Coordinated with supplier for timely delivery and ensured alternative sources.,2024-09-01T10:17:17
+65,2024-10-13T16:30:19,Butter moisture content too high,High,Modified churning time and temperature.,2024-10-15T16:30:19
+66,2024-06-09T03:19:26,Separator drum vibration,Low,Balanced and tightened separator drum.,2024-06-10T03:19:26
+67,2024-04-26T02:01:36,High-fat content in skim milk,High,Adjusted cream separator settings.,2024-04-29T02:01:36
+68,2024-08-14T06:19:46,Clog in pasteurizer,Low,Cleared clog and cleaned entire pasteurizer.,2024-08-15T06:19:46
+70,2024-05-05T02:06:29,Clog in pasteurizer,Low,Cleared clog and cleaned entire pasteurizer.,2024-05-07T02:06:29
+72,2024-07-25T06:11:43,Excessive machine noise,Low,Lubricated moving parts and tightened loose components.,2024-07-28T06:11:43
+73,2024-09-09T11:04:02,Raw milk temperature too high during offloading,High,Adjusted chiller settings and monitored closely.,2024-09-12T11:04:02
+74,2024-06-08T04:26:57,Cheese moisture content too low,Medium,Adjusted curd draining time.,2024-06-10T04:26:57
+75,2024-05-10T07:35:24,Power fluctuation causing machine downtime,Low,Installed an additional uninterruptible power supply (UPS).,2024-05-13T07:35:24
+76,2024-06-29T19:08:46,Low shelf life for yogurt,Medium,Reviewed and adjusted fermentation process.,2024-07-01T19:08:46
+77,2024-10-06T17:46:15,Butter moisture content too high,High,Modified churning time and temperature.,2024-10-07T17:46:15
+78,2024-08-26T21:19:23,Excessive machine noise,High,Lubricated moving parts and tightened loose components.,2024-08-27T21:19:23
+79,2024-07-09T04:21:04,Underperformance of homogenizer,High,Performed maintenance on homogenizer valve.,2024-07-11T04:21:04
+80,2024-10-06T07:41:06,Flavor inconsistency in yogurt,Low,Standardized ingredient proportions more strictly.,2024-10-07T07:41:06
+81,2024-05-28T22:26:15,Power fluctuation causing machine downtime,High,Installed an additional uninterruptible power supply (UPS).,2024-05-30T22:26:15
+82,2024-07-12T22:06:39,Raw milk temperature too high during offloading,Low,Adjusted chiller settings and monitored closely.,2024-07-14T22:06:39
+83,2024-06-09T12:10:56,Butter moisture content too high,Low,Modified churning time and temperature.,2024-06-11T12:10:56
+84,2024-10-06T06:10:39,Flavor inconsistency in yogurt,High,Standardized ingredient proportions more strictly.,2024-10-07T06:10:39
+85,2024-08-26T15:12:55,Underperformance of homogenizer,High,Performed maintenance on homogenizer valve.,2024-08-27T15:12:55
+87,2024-07-25T07:15:06,Low shelf life for yogurt,Medium,Reviewed and adjusted fermentation process.,2024-07-26T07:15:06
+88,2024-07-08T20:58:59,Inefficiency in milk clarification,Low,Enhanced clarification process and reassessed equipment.,2024-07-09T20:58:59
+89,2024-04-22T10:02:41,Delayed milk delivery,Medium,Coordinated with supplier for timely delivery and ensured alternative sources.,2024-04-24T10:02:41
+90,2024-09-21T06:02:01,Inconsistent product weight in packaging,Medium,Calibrated filling machines and conducted more frequent checks.,2024-09-23T06:02:01
+91,2024-09-04T06:21:06,Low shelf life for yogurt,High,Reviewed and adjusted fermentation process.,2024-09-07T06:21:06
+92,2024-09-08T12:01:30,Excessive machine noise,Medium,Lubricated moving parts and tightened loose components.,2024-09-09T12:01:30
+93,2024-06-18T14:45:31,Power fluctuation causing machine downtime,Low,Installed an additional uninterruptible power supply (UPS).,2024-06-19T14:45:31
+94,2024-09-11T20:47:01,Packaging defect in pasteurized milk,High,Inspected and repaired packaging machine.,2024-09-12T20:47:01
+95,2024-06-21T21:30:15,Shortcut in electrical system,Low,Conducted electrical inspection and repair.,2024-06-22T21:30:15
+96,2024-07-23T13:59:43,Packaging defect in pasteurized milk,High,Inspected and repaired packaging machine.,2024-07-26T13:59:43
+97,2024-05-03T01:04:40,Low protein content in raw milk,High,"Procured milk from an alternative, higher-quality supplier.",2024-05-04T01:04:40
+98,2024-05-28T02:00:25,Inefficiency in milk clarification,Low,Enhanced clarification process and reassessed equipment.,2024-05-31T02:00:25
+99,2024-08-31T02:43:06,High bacterial count in raw milk,Low,Conducted additional pasteurization cycle.,2024-09-02T02:43:06
+100,2024-10-11T21:02:22,Separator drum vibration,High,Balanced and tightened separator drum.,2024-10-12T21:02:22
+101,2024-08-15T10:39:36,Packaging defect in pasteurized milk,Low,Inspected and repaired packaging machine.,2024-08-18T10:39:36
+102,2024-07-12T09:43:46,High bacterial count in raw milk,High,Improved storage conditions and conducted training for handling.,2024-07-15T09:43:46
+103,2024-08-01T12:20:38,Packaging defect in pasteurized milk,Medium,Inspected and repaired packaging machine.,2024-08-03T12:20:38
+104,2024-08-30T01:08:57,Power fluctuation causing machine downtime,High,Installed an additional uninterruptible power supply (UPS).,2024-09-01T01:08:57
+105,2024-06-12T13:51:12,Clog in pasteurizer,Medium,Cleared clog and cleaned entire pasteurizer.,2024-06-13T13:51:12
+106,2024-08-25T08:15:06,Excessive machine noise,Medium,Lubricated moving parts and tightened loose components.,2024-08-27T08:15:06
+107,2024-10-19T09:32:21,High-fat content in skim milk,Low,Adjusted cream separator settings.,2024-10-20T09:32:21
+108,2024-08-20T14:48:42,Butter moisture content too high,High,Modified churning time and temperature.,2024-08-21T14:48:42
+110,2024-05-17T17:17:32,Yield efficiency below target,Medium,Optimized process parameters to minimize waste.,2024-05-18T17:17:32
+111,2024-06-08T10:26:52,Excessive downtime in CIP system,Medium,Revised CIP (Clean-In-Place) schedule and improved efficiency.,2024-06-10T10:26:52
+112,2024-07-16T02:05:17,Low protein content in raw milk,High,"Procured milk from an alternative, higher-quality supplier.",2024-07-19T02:05:17
+113,2024-08-18T18:37:29,Lactose level variations,High,Monitored lactose levels continuously and adjusted processing parameters.,2024-08-21T18:37:29
+114,2024-08-29T16:28:05,Overheating in pasteurizer,High,Adjusted temperature settings to optimal range.,2024-08-31T16:28:05
+115,2024-08-28T19:36:55,Inconsistent product weight in packaging,Low,Calibrated filling machines and conducted more frequent checks.,2024-08-29T19:36:55
+116,2024-05-14T09:56:11,Yield efficiency below target,Low,Optimized process parameters to minimize waste.,2024-05-17T09:56:11
+117,2024-05-22T04:26:23,High spoilage rate of raw milk,Medium,Improved storage conditions and conducted training for handling.,2024-05-24T04:26:23
+118,2024-06-01T21:36:19,Incorrect fat content in pasteurized milk,High,Rechecked and adjusted homogenizer settings.,2024-06-03T21:36:19
+119,2024-09-02T11:58:07,Power fluctuation causing machine downtime,High,Installed an additional uninterruptible power supply (UPS).,2024-09-04T11:58:07
+120,2024-07-25T20:43:24,Inconsistent cream separation,Medium,Calibrated cream separator.,2024-07-26T20:43:24
+121,2024-10-18T03:58:47,High bacterial count in raw milk,Medium,Conducted additional pasteurization cycle.,2024-08-25T04:30:21
+122,2024-04-22T16:31:26,Underperformance of homogenizer,Medium,Performed maintenance on homogenizer valve.,2024-04-23T16:31:26
+123,2024-06-11T20:48:00,Delayed fermentation for yogurt,Low,Increased culture inoculum amount.,2024-06-14T20:48:00
+124,2024-08-07T03:01:01,Butter moisture content too high,High,Modified churning time and temperature.,2024-08-09T03:01:01
+125,2024-04-23T21:03:50,High spoilage rate of raw milk,Low,Improved storage conditions and conducted training for handling.,2024-04-24T21:03:50
+126,2024-10-10T11:34:26,Delayed shift changeover leading to downtime,High,Improved shift handover procedures with detailed logging.,2024-10-11T11:34:26
+127,2024-04-28T23:54:11,High spoilage rate of raw milk,Medium,Improved storage conditions and conducted training for handling.,2024-05-01T23:54:11
+128,2024-05-20T18:10:01,High spoilage rate of raw milk,Medium,Improved storage conditions and conducted training for handling.,2024-05-21T18:10:01
+129,2024-06-20T20:35:16,Underperformance of homogenizer,Medium,Performed maintenance on homogenizer valve.,2024-06-21T20:35:16
+130,2024-06-30T11:30:42,Excessive downtime in CIP system,Low,Revised CIP (Clean-In-Place) schedule and improved efficiency.,2024-07-03T11:30:42
+131,2024-08-29T12:08:05,Clog in pasteurizer,Low,Cleared clog and cleaned entire pasteurizer.,2024-08-31T12:08:05
+132,2024-08-08T17:14:46,High moisture content in powdered milk,Medium,Extended drying process.,2024-08-11T17:14:46
+133,2024-05-22T00:16:14,Shortcut in electrical system,Low,Conducted electrical inspection and repair.,2024-05-23T00:16:14
+134,2024-09-26T10:28:12,Flavor inconsistency in yogurt,Low,Standardized ingredient proportions more strictly.,2024-09-28T10:28:12
+135,2024-05-26T19:52:52,Overheating in pasteurizer,High,Adjusted temperature settings to optimal range.,2024-05-28T19:52:52
+136,2024-10-19T17:54:59,Flavor inconsistency in yogurt,Medium,Standardized ingredient proportions more strictly.,2024-10-22T17:54:59
+137,2024-09-11T17:36:59,Inefficiency in milk clarification,Low,Enhanced clarification process and reassessed equipment.,2024-09-13T17:36:59
+138,2024-09-21T21:25:52,Low protein content in raw milk,High,"Procured milk from an alternative, higher-quality supplier.",2024-09-22T21:25:52
+139,2024-10-08T08:35:30,Delayed milk delivery,Low,Coordinated with supplier for timely delivery and ensured alternative sources.,2024-10-10T08:35:30
+140,2024-05-30T18:04:36,Clog in pasteurizer,Medium,Cleared clog and cleaned entire pasteurizer.,2024-06-01T18:04:36
+141,2024-09-28T07:58:36,Lactose level variations,Low,Monitored lactose levels continuously and adjusted processing parameters.,2024-09-29T07:58:36
+142,2024-08-28T03:58:39,Overheating in pasteurizer,Low,Adjusted temperature settings to optimal range.,2024-08-30T03:58:39
+143,2024-06-15T02:23:03,High-fat content in skim milk,Low,Adjusted cream separator settings.,2024-06-17T02:23:03
+144,2024-08-24T13:31:17,Pump A failure,High,Conducted immediate repair and replaced worn-out parts.,2024-08-26T13:31:17
+145,2024-10-02T19:44:45,Excessive machine noise,High,Lubricated moving parts and tightened loose components.,2024-10-04T19:44:45
+146,2024-04-27T08:37:40,Delayed shift changeover leading to downtime,Low,Improved shift handover procedures with detailed logging.,2024-04-29T08:37:40
+147,2024-08-12T17:44:39,Low protein content in raw milk,Medium,"Procured milk from an alternative, higher-quality supplier.",2024-08-13T17:44:39
+148,2024-08-15T20:13:24,Separator drum vibration,Medium,Balanced and tightened separator drum.,2024-08-17T20:13:24
+149,2024-09-21T17:01:15,Shortcut in electrical system,Medium,Conducted electrical inspection and repair.,2024-09-23T17:01:15
+150,2024-07-30T07:24:15,Incorrect fat content in pasteurized milk,Low,Rechecked and adjusted homogenizer settings.,2024-08-01T07:24:15
