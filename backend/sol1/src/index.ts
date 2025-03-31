@@ -63,9 +63,10 @@ export async function initializeAll() {
   // console.log("tableInfoStr: ", tableInfoStr);
 
   const kgSchema = neo4jGraphSingleton.getSchema();
-  console.log("KG schema: ", kgSchema);
+  // console.log("KG schema: ", kgSchema);
   const agentPrompt = `
   Today's date is 2024-10-19, ergo CURRENT_DATE=2024-10-19.
+  If a question does not specify any date, use the previous day (2024-10-18) as the date. 
   
   You are an AI assistant for the Main Dairy Plant with access to two complementary data sources:
   1. "neo4jTool" - A knowledge graph containing operational data, process logs, and quality metrics
@@ -73,7 +74,6 @@ export async function initializeAll() {
   
   Important Plant Information:
   - Maximum production capacity: 53857 Liters
-  - Default timeframe: If no date specified, assume previous day (2024-10-18)
   - All Neo4j timestamps use format: "YYYY-MM-DDThh:mm:ssZ"
   
   Available Tools:
@@ -120,8 +120,8 @@ export async function initializeAll() {
      - For process variation, include means and standard deviations
      - When combining data from both tools, clearly explain your methodology
      - Present all results in natural language with appropriate context
-  
-  Complex Question Handling Strategy:
+
+Complex Question Handling Strategy:
   1. Multi-Step Query Approach:
      - For questions about reasons or causes (e.g., "Why did X happen?"):
        a. First query: Look for direct evidence in NonConformityRecords (neo4jTool)
@@ -197,21 +197,17 @@ export async function initializeAll() {
         SELECT supplier_id, test_date, fat_content, protein_content, bacterial_count 
         FROM raw_material_quality 
         WHERE test_date BETWEEN '2024-10-12' AND '2024-10-18'
-        ORDER BY test_date
-  
-     d. Review quality defects by type (postgresTool):
-        SELECT defect_type, COUNT(*) as frequency, AVG(severity_rating) as avg_severity 
-        FROM quality_defects 
-        WHERE detection_date BETWEEN '2024-10-12' AND '2024-10-18'
-        GROUP BY defect_type 
-        ORDER BY frequency DESC
+
   
   Tool-Specific Query Guidelines:
-  
+  - If a question does not specify any date, for example ("Have we documented any non-conformities?"), assume the date is the previous day (2024-10-18).
+  - The dates in the data sources are hour, minute, and seconds specific, therefore you need to handle for this in the query, for example by searching for dates between todays date and 24 hours earlier. 
+    
+
   Neo4j Query Guidelines:
   - Always use datetime() for date comparisons
   - Include full timestamp format: T00:00:00Z
-  - Example: WHERE datetime(s.shift_date) = datetime('2024-10-18T00:00:00Z')
+  - Example: WHERE datetime(s.shift_date) = datetime('2024-10-19T00:00:00Z')
   - For time ranges: Use >= and < operators with appropriate timestamps
   - For aggregations: Use Neo4j's built-in functions like avg(), count(), sum(), stDev()
   
@@ -221,6 +217,7 @@ export async function initializeAll() {
   - For time-specific queries: Use timestamp format 'YYYY-MM-DD HH:MI:SS'
   - Apply appropriate JOINs when data spans multiple tables
   - Use GROUP BY for aggregated metrics
+  - use the postgres schema below to construct only valid queries
   
   Remember:
   1. Never return "I don't know" without first trying multiple query approaches with both tools
@@ -275,7 +272,7 @@ export async function handleUserQuestion(
     {
       messages: [new HumanMessage(userQuestion)],
     },
-    { configurable: { thread_id: threadId || "sol2" } }
+    { configurable: { thread_id: threadId || "stakeholder-test-3" } }
   );
 
   // Log and return the final answer

@@ -11,14 +11,15 @@ export async function createNeo4jTool(
   const graphLLM = new ChatOpenAI({
     openAIApiKey,
     temperature: 0,
-    modelName: "gpt-3.5-turbo",
+    modelName: "gpt-4o",
   });
 
+  // Enable intermediate steps to capture where the agent looked in the graph.
   const graphChain = GraphCypherQAChain.fromLLM({
     llm: graphLLM,
     graph: neo4jGraph,
-    returnDirect: false, // maybe change to true for faster response
-    // returnIntermediateSteps: true,
+    returnDirect: false, // may change to true for faster responses
+    returnIntermediateSteps: true, // Enable intermediate steps
   });
 
   async function runWithRetries(query: string) {
@@ -27,13 +28,20 @@ export async function createNeo4jTool(
     let lastError: any;
     while (attempts < 3) {
       try {
-        console.log("Neo4jTool retried");
-        console.log("query: ", query);
+        console.log("Neo4jTool Invoked: ------------------");
+        console.log("Cypher Query: ", query);
         const result = await graphChain.invoke({ query });
+        // Log intermediate steps to see where the agent looked in the graph -> TODO: remove when evaluating performance
+        if (result.intermediateSteps) {
+          console.log(
+            "Intermediate Steps: ",
+            JSON.stringify(result.intermediateSteps, null, 2)
+          );
+        }
         console.log("ToolResult: ", result.result);
         return result.result;
       } catch (err) {
-        // maybe invoke sql chain when error?
+        console.log("Neo4jTool retried");
         console.error(err);
         lastError = err;
         attempts++;
@@ -50,7 +58,7 @@ export async function createNeo4jTool(
       name: "neo4jTool",
       description: `
         Use this tool to send a valid CYPHER statement to the knowledge graph.
-           Rules:
+        Rules:
         - **No** explanations or commentary.
         - **Do not** wrap the CYPHER in backticks or code fences.
         - Provide exactly one CYPHER statement in the "query" field.

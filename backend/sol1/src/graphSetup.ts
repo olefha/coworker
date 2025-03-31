@@ -80,14 +80,13 @@ function shouldContinue(state: typeof StateAnnotation.State) {
 export async function createGraph(
   neo4jGraph: Neo4jGraph,
   dataSource: DataSource,
-
   prompt: string,
   openAIApiKey: string
 ) {
   const neo4jTool = await createNeo4jTool(neo4jGraph, openAIApiKey);
-  // const postgresTool = await createPostgresTool(dataSource, openAIApiKey, 5);
+  const postgresTool = await createPostgresTool(dataSource, openAIApiKey, 5);
 
-  const tools = [neo4jTool]; //, postgresTool];
+  const tools = [neo4jTool, postgresTool];
 
   const model = new ChatOpenAI({
     temperature: 0,

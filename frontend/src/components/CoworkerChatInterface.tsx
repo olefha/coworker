@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-// import ReactMarkdown from "react-markdown";
+import ReactMarkdown from "react-markdown";
 import { askQuestion } from "../services/apiService";
+import "./markdownStyles.css";
 
 interface Message {
   sender: "user" | "ai";
@@ -62,7 +63,7 @@ const CoworkerChatInterface: React.FC = () => {
 
   return (
     <div style={styles.container}>
-      <h2>Combined SQL & Graph Chat</h2>
+      <h2 style={styles.header}>Chatty Digital Coworker</h2>
       <div style={styles.chatBox}>
         {messages.map((msg, index) => (
           <div
@@ -72,12 +73,16 @@ const CoworkerChatInterface: React.FC = () => {
               alignSelf: msg.sender === "user" ? "flex-end" : "flex-start",
               backgroundColor: msg.sender === "user" ? "#dcf8c6" : "#fff",
               whiteSpace: "pre-wrap",
+              fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif", // Custom font for all messages
             }}
           >
             {msg.sender === "user" ? (
               <span>{msg.content}</span>
             ) : (
-              <div style={styles.markdownContainer}>{msg.content}</div>
+              <div className="markdown-content">
+                {/* @ts-expect-error - ReactMarkdown has typing issues with recent versions */}
+                <ReactMarkdown>{msg.content}</ReactMarkdown>
+              </div>
             )}
           </div>
         ))}
@@ -103,7 +108,7 @@ const CoworkerChatInterface: React.FC = () => {
 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
-    maxWidth: "800px", // Increased for better markdown readability
+    maxWidth: "800px",
     margin: "2rem auto",
     padding: "1rem",
     border: "1px solid #ccc",
@@ -112,6 +117,12 @@ const styles: { [key: string]: React.CSSProperties } = {
     flexDirection: "column",
     height: "80vh",
     backgroundColor: "",
+    fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif", // Default font for the entire container
+  },
+  header: {
+    fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
+    fontSize: "1.5rem",
+    marginBottom: "1rem",
   },
   chatBox: {
     flex: 1,
@@ -123,46 +134,12 @@ const styles: { [key: string]: React.CSSProperties } = {
     borderRadius: "4px",
   },
   message: {
-    maxWidth: "90%", // Increased for better markdown readability
-    padding: "1rem",
-    marginBottom: "1rem",
+    maxWidth: "90%",
+    padding: "0.8rem", // Slightly reduced padding
+    marginBottom: "0.8rem", // Slightly reduced margin
     borderRadius: "12px",
     boxShadow: "0 1px 2px rgba(0,0,0,0.1)",
-    font: "Manrope",
-  },
-  markdownContainer: {
-    "& p": {
-      margin: "0.5em 0",
-    },
-    "& h1": {
-      fontSize: "1.5em",
-      marginTop: "1em",
-      marginBottom: "0.5em",
-    },
-    "& h2": {
-      fontSize: "1.3em",
-      marginTop: "0.8em",
-      marginBottom: "0.4em",
-    },
-    "& ul, & ol": {
-      marginLeft: "1.5em",
-    },
-    "& code": {
-      backgroundColor: "#f0f0f0",
-      padding: "0.2em 0.4em",
-      borderRadius: "3px",
-    },
-    "& pre": {
-      backgroundColor: "#f0f0f0",
-      padding: "0.5em",
-      borderRadius: "5px",
-      overflowX: "auto",
-    },
-    "& hr": {
-      border: "none",
-      borderTop: "1px solid #ccc",
-      margin: "1em 0",
-    },
+    fontSize: "0.95rem", // Slightly smaller font size
   },
   form: {
     display: "flex",
@@ -174,6 +151,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     borderRadius: "20px",
     border: "1px solid #ccc",
     marginRight: "0.5rem",
+    fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif", // Match the font
   },
   button: {
     padding: "0.5rem 1rem",
@@ -182,10 +160,12 @@ const styles: { [key: string]: React.CSSProperties } = {
     backgroundColor: "#007bff",
     color: "#fff",
     cursor: "pointer",
+    fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif", // Match the font
   },
   error: {
     color: "red",
     marginTop: "0.5rem",
+    fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif", // Match the font
   },
 };
 
