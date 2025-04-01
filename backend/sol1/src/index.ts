@@ -1,28 +1,28 @@
 import "reflect-metadata";
 import "dotenv/config";
-import { DataSource } from "typeorm";
+// import { DataSource } from "typeorm";
 import { Neo4jGraph } from "@langchain/community/graphs/neo4j_graph";
-import { SqlDatabase } from "langchain/sql_db";
+// import { SqlDatabase } from "langchain/sql_db";
 import { createGraph } from "./graphSetup";
 import { HumanMessage } from "@langchain/core/messages";
 
 // Initialize Postgresql Data Source
-async function initializeDataSource(): Promise<DataSource> {
-  const dataSource = new DataSource({
-    type: "postgres",
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT!),
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    entities: [],
-    synchronize: false,
-    logging: false,
-  });
-  await dataSource.initialize();
-  console.log("PostgreSQL Database connected successfully.");
-  return dataSource;
-}
+// async function initializeDataSource(): Promise<DataSource> {
+//   const dataSource = new DataSource({
+//     type: "postgres",
+//     host: process.env.DB_HOST,
+//     port: Number(process.env.DB_PORT!),
+//     username: process.env.DB_USER,
+//     password: process.env.DB_PASSWORD,
+//     database: process.env.DB_NAME,
+//     entities: [],
+//     synchronize: false,
+//     logging: false,
+//   });
+//   await dataSource.initialize();
+//   console.log("PostgreSQL Database connected successfully.");
+//   return dataSource;
+// }
 
 // Initialize Neo4j Graph
 async function initializeNeo4jGraph(): Promise<Neo4jGraph> {
@@ -41,25 +41,25 @@ async function initializeNeo4jGraph(): Promise<Neo4jGraph> {
   return neo4jGraph;
 }
 
-let dataSourceSingleton: DataSource | null = null;
+// let dataSourceSingleton: DataSource | null = null;
 let neo4jGraphSingleton: Neo4jGraph | null = null;
 let handleQuestionGraph: ReturnType<typeof createGraph> | null = null;
 
 export async function initializeAll() {
   // If already initialized, skip
-  if (dataSourceSingleton && neo4jGraphSingleton && handleQuestionGraph) {
+  if (neo4jGraphSingleton && handleQuestionGraph) {
     return;
   }
 
-  dataSourceSingleton = await initializeDataSource();
+  // dataSourceSingleton = await initializeDataSource();
   neo4jGraphSingleton = await initializeNeo4jGraph();
 
-  const sqlDatabase = await SqlDatabase.fromDataSourceParams({
-    appDataSource: dataSourceSingleton,
-  });
+  // const sqlDatabase = await SqlDatabase.fromDataSourceParams({
+  //   appDataSource: dataSourceSingleton,
+  // });
 
   // Get database table info
-  const tableInfoStr = await sqlDatabase.getTableInfo();
+  // const tableInfoStr = await sqlDatabase.getTableInfo();
   // console.log("tableInfoStr: ", tableInfoStr);
 
   const kgSchema = neo4jGraphSingleton.getSchema();
@@ -70,7 +70,6 @@ export async function initializeAll() {
   
   You are an AI assistant for the Main Dairy Plant with access to two complementary data sources:
   1. "neo4jTool" - A knowledge graph containing operational data, process logs, and quality metrics
-  2. "postgresTool" - A relational database with additional structured plant data
   
   Important Plant Information:
   - Maximum production capacity: 53857 Liters
@@ -81,27 +80,8 @@ export async function initializeAll() {
      * Best for: Connected data, relationships between entities, process flows, quality correlations
      * Query format: Cypher query language with specific datetime handling requirements
      * Example: MATCH (d:DairyPlant)-[:HAS_QUALITY_DATA]->(q:QualityData) WHERE datetime(q.test_date) = datetime('2024-10-18T00:00:00Z') RETURN q
+
   
-  2. "postgresTool" - Generates SQL queries for the relational database and returns structured results.
-     * Best for: Detailed operational metrics, historical trends, standardized reports, inventory tracking
-     * Query format: Standard SQL with table joins where necessary
-     * Example: SELECT * FROM production_metrics WHERE date = '2024-10-18'
-  
-  Tool Selection Guidelines:
-  - Use neo4jTool when:
-    * Question involves relationships between different data types (e.g., how process affects quality)
-    * Need to traverse connected entities (e.g., tracing product from raw materials to final tests)
-    * Looking for patterns within interconnected systems
-  
-  - Use postgresTool when:
-    * Question requires detailed operational metrics
-    * Need for precise historical data with standardized formatting
-    * Question involves reporting on structured data like inventory, staffing, or financial metrics
-  
-  - Use both tools when:
-    * Complex questions require data synthesis from multiple sources
-    * Verification of findings across different data systems is needed
-    * Building comprehensive root cause analysis
   
   Core Rules:
   1. Data Accuracy:
@@ -211,16 +191,9 @@ Complex Question Handling Strategy:
   - For time ranges: Use >= and < operators with appropriate timestamps
   - For aggregations: Use Neo4j's built-in functions like avg(), count(), sum(), stDev()
   
-  Postgres Query Guidelines:
-  - Use standard date format: 'YYYY-MM-DD'
-  - For date ranges: Use BETWEEN 'start_date' AND 'end_date'
-  - For time-specific queries: Use timestamp format 'YYYY-MM-DD HH:MI:SS'
-  - Apply appropriate JOINs when data spans multiple tables
-  - Use GROUP BY for aggregated metrics
-  - use the postgres schema below to construct only valid queries
   
   Remember:
-  1. Never return "I don't know" without first trying multiple query approaches with both tools
+  1. Never return "I don't know" without first trying multiple query approaches with tools
   2. Break down complex questions into smaller, answerable parts
   3. Make multiple queries across both tools to build a complete picture
   4. Look for relationships between different data points
@@ -230,14 +203,10 @@ Complex Question Handling Strategy:
   8. Use statistical measures when appropriate
   9. Consider time-based patterns and trends
   10. Always verify your conclusions against the actual data
-  11. Cross-reference findings between neo4jTool and postgresTool when possible
-  
-  Schema Information:
+
   Neo4j Schema:
   ${kgSchema}
   
-  Postgres Schema:
-  ${tableInfoStr}
   `;
 
   const openAIApiKey = process.env.OPENAI_API_KEY!;
@@ -245,7 +214,7 @@ Complex Question Handling Strategy:
   // Create Graph
   handleQuestionGraph = createGraph(
     neo4jGraphSingleton,
-    dataSourceSingleton,
+    // dataSourceSingleton,
     agentPrompt,
     openAIApiKey
   );
@@ -258,8 +227,8 @@ export async function handleUserQuestion(
 ): Promise<string> {
   await initializeAll();
 
-  console.log("User Question:", userQuestion);
-  console.log("-------------------------------------------------------");
+  // console.log("User Question:", userQuestion);
+  // console.log("-------------------------------------------------------");
 
   if (!handleQuestionGraph) {
     throw new Error("Graph not initialized");
@@ -272,7 +241,11 @@ export async function handleUserQuestion(
     {
       messages: [new HumanMessage(userQuestion)],
     },
-    { configurable: { thread_id: threadId || "stakeholder-test-3" } }
+    {
+      configurable: {
+        thread_id: threadId || "solution2-final-evaluation",
+      },
+    }
   );
 
   // Log and return the final answer
@@ -280,8 +253,8 @@ export async function handleUserQuestion(
   const lastMsg = messages[messages.length - 1];
   const finalOutput = lastMsg?.content ?? "";
 
-  console.log("Final Output:\n", finalOutput);
-  console.log("-------------------------------------------------------");
+  // console.log("Final Output:\n", finalOutput);
+  // console.log("-------------------------------------------------------");
 
   return finalOutput as string;
 }
