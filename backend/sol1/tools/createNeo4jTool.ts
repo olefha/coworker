@@ -28,20 +28,20 @@ export async function createNeo4jTool(
     let lastError: any;
     while (attempts < 3) {
       try {
-        console.log("Neo4jTool Invoked: ------------------");
-        console.log("Cypher Query: ", query);
+        // console.log("Neo4jTool Invoked: ------------------");
+        // console.log("Cypher Query: ", query);
         const result = await graphChain.invoke({ query });
         // Log intermediate steps to see where the agent looked in the graph -> TODO: remove when evaluating performance
-        if (result.intermediateSteps) {
-          console.log(
-            "Intermediate Steps: ",
-            JSON.stringify(result.intermediateSteps, null, 2)
-          );
-        }
-        console.log("ToolResult: ", result.result);
+        // if (result.intermediateSteps) {
+        //   console.log(
+        //     "Intermediate Steps: ",
+        //     JSON.stringify(result.intermediateSteps, null, 2)
+        //   );
+        // }
+        // console.log("ToolResult: ", result.result);
         return result.result;
       } catch (err) {
-        console.log("Neo4jTool retried");
+        // console.log("Neo4jTool retried");
         console.error(err);
         lastError = err;
         attempts++;
