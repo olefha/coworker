@@ -13,7 +13,7 @@
     "populate-kg": "ts-node scripts/populateKnowledgeGraph.ts",
     "load-text-kg": "ts-node scripts/populateKnowledgeGraphText.ts",
     "get-data": "ts-node services/fullRetrieverService.ts",
-    "eval": "ts-node sol1/evaluation.ts",
+    "eval": "ts-node sol1/eval/evaluation.ts",
     "load-csv-kg": "ts-node kg_and_csv/neo4jLoader.ts"
   },
   "keywords": [],

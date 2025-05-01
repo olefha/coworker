@@ -45,7 +45,7 @@ export async function createPostgresTool(
       try {
         console.log("PostgresTool Invoked: ---------------");
         const result = await sqlChain.invoke({ query });
-        console.log("ToolResult: ", result.result);
+        console.log("ToolResult: ", result.result, result);
         return result.result;
       } catch (err) {
         console.log("PostgresTool Retried");
