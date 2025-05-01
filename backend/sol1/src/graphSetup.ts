@@ -78,15 +78,15 @@ function shouldContinue(state: typeof StateAnnotation.State) {
  *      The ReAct agent does all tool usage internally in that single pass.
  */
 export async function createGraph(
-  neo4jGraph: Neo4jGraph,
-  // dataSource: DataSource,
+  // neo4jGraph: Neo4jGraph,
+  dataSource: DataSource,
   prompt: string,
   openAIApiKey: string
 ) {
-  const neo4jTool = await createNeo4jTool(neo4jGraph, openAIApiKey);
-  // const postgresTool = await createPostgresTool(dataSource, openAIApiKey, 5);
+  // const neo4jTool = await createNeo4jTool(neo4jGraph, openAIApiKey);
+  const postgresTool = await createPostgresTool(dataSource, openAIApiKey, 5);
 
-  const tools = [neo4jTool];
+  const tools = [postgresTool];
 
   const model = new ChatOpenAI({
     temperature: 0,

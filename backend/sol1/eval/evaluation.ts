@@ -11,7 +11,10 @@ import * as path from "path";
 async function runBenchmarks() {
   for (let qi = 0; qi < BENCHMARKS.length; qi++) {
     const { question, expected } = BENCHMARKS[qi];
-    const outputFilePath = path.join(__dirname, "eval-solution-3.txt");
+    const outputFilePath = path.join(
+      __dirname,
+      "ablation-new-prompt-old-kg.txt"
+    );
 
     for (let i = 0; i < 10; i++) {
       console.log(`-- RUN: ${i} for Question #${qi + 1}\n`);
