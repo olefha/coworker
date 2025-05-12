@@ -43,11 +43,14 @@ export async function createPostgresTool(
     let lastError: any;
     while (attempts < maxRetries) {
       try {
-        console.log("PostgresTool Retried");
         const result = await sqlChain.invoke({ query });
+
         console.log("ToolResult: ", result.result);
+        console.log("Query generated: ", result);
         return result.result;
       } catch (err) {
+        console.log("PostgresTool Retried");
+        console.log("Error log: ", err);
         lastError = err;
         attempts++;
       }
